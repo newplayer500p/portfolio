@@ -24,7 +24,7 @@
       "category": "Projet de Fin d'Études — Licence 3",
       "featured": true,
       "period": "2026",
-      "stack": ["NestJS", "Flutter", "PostgreSQL", "PostGIS", "Redis", "Gemini", "Groq", "Socket.IO", "Prisma", "AES-256-CBC", "Supabase Storage", "MapLibre", "LLaMA 3.3 70B"],
+      "stack": ["NestJS", "Flutter", "React", "PostgreSQL", "PostGIS", "Redis", "Termux", "Supabase Storage", "LLaMA 3.3 70B"],
       "details": {
         "summary": "SoaLink est une plateforme de santé numérique conçue pour Madagascar, permettant aux patients d'être orientés intelligemment vers les établissements de santé adaptés à leur situation. Elle combine un moteur IA de triage médical, une recherche géospatiale par proximité, une prise de rendez-vous depuis la carte, et une messagerie temps réel. Projet de soutenance (PFE Licence 3) de Mirado, développé seul de A à Z.",
         "architecture": "Architecture backend NestJS modulaire avec un schéma Prisma de 26 tables incluant le support PostGIS. Chiffrement AES-256-CBC des données sensibles. Cache Redis pour les sessions et résultats fréquents. Stockage de fichiers via Supabase Storage (S3) avec URLs signées. Messagerie temps réel via Socket.IO avec IoAdapter personnalisé. Deux modes de planning médecin : CRÉNEAU (plages horaires fixes) et QUOTA (nombre de consultations par période).",
@@ -75,7 +75,7 @@
       "category": "Projet portes ouvertes ESPA / Application Web",
       "featured": true,
       "period": "2026",
-      "stack": ["NestJS", "React 19", "PostgreSQL", "PostGIS", "MapLibre GL", "Socket.IO", "Turborepo", "Prisma", "Zustand", "React Query", "getUserMedia", "GPS", "QR Code"],
+      "stack": ["NestJS", "React 19", "PostgreSQL", "PostGIS", "Turborepo", "Prisma"],
       "details": {
         "summary": "GeoTrano est une plateforme web de géolocalisation d'annonces immobilières pour Madagascar. Elle se distingue par un système anti-fraude GPS innovant pour la validation des photos de biens, un modèle freemium avec vérification d'identité (CIN), et des requêtes spatiales PostGIS pour la recherche par proximité.",
         "architecture": "Architecture monorepo Turborepo avec backend NestJS/TypeScript et frontend React 19. Base de données PostgreSQL/PostGIS avec Prisma ORM. Gestion d'état frontend via Zustand + React Query. Notifications temps réel via WebSocket.",
@@ -111,7 +111,7 @@
       "category": "Projet Multimédia / IA",
       "featured": true,
       "period": "2025-2026",
-      "stack": ["Python", "FastAPI", "Flutter", "Whisper", "WhisperX", "Demucs", "PyTorch", "CUDA", "FFmpeg"],
+      "stack": ["Python", "Flutter", "Whisper", "WhisperX", "Demucs", "PyTorch", "CUDA", "FFmpeg"],
       "details": {
         "summary": "Application de génération automatique de sous-titres et d'isolation de pistes vocales pour fichiers audio et vidéo. Pipeline IA local utilisant Whisper/WhisperX pour la transcription et Demucs pour la séparation de sources audio, accéléré par GPU CUDA. Interface multiplateforme Flutter.",
         "architecture": "Backend FastAPI orchestrant un pipeline de traitement multimédia : (1) Séparation de sources audio via Demucs. (2) Transcription et alignement temporel via WhisperX avec accélération CUDA. (3) Génération de fichiers de sous-titres (SRT/VTT) synchronisés. (4) Post-traitement FFmpeg."
@@ -137,7 +137,7 @@
       "category": "Mini-projet d'apprentissage",
       "featured": false,
       "period": "2024-2025",
-      "stack": ["React Native", "Expo", "JavaScript ES6+", "SVG"],
+      "stack": ["React Native", "Expo", "JavaScript ES6+"],
       "details": {
         "summary": "Adaptation numérique du Fanoron-tsivy, jeu de stratégie traditionnel malgache, jouable à deux ou contre une IA. Implémente les règles complètes de capture sur plateau 9x9 et un moteur IA basé sur un arbre de décision. Projet algorithmique en React Native / Expo."
       },
