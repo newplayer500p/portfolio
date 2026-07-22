@@ -6,7 +6,7 @@
     "bio": "RASOLOFOSON Haja Mirado est un développeur Full-Stack étudiant en Génie Logiciel (L3) à l'École Supérieure Polytechnique d'Antsirabe (ESPA), Madagascar. Il conçoit et déploie des applications web et mobiles complètes, des systèmes backend complexes, et intègre des solutions IA/LLM dans ses projets.",
     "skills": {
       "stack": ["Flutter", "Dart", "NestJS", "TypeScript", "React", "PostgreSQL", "PostGIS", "Redis", "Python", "FastAPI", "C++", "Java", "n8n"],
-      "details": "Compétences techniques de Mirado : Flutter/Dart (Clean Architecture, mobile & web), NestJS/TypeScript (backend modulaire, REST, WebSocket), React 19, PostgreSQL/PostGIS (requêtes géospatiales, Prisma ORM), Redis, Python/FastAPI, intégration LLM (Google Gemini, Groq/LLaMA 3.3 70B), n8n (automatisation, workflows RAG), administration Linux/VPS."
+      "details": "Compétences techniques de Mirado : Flutter/Dart (Clean Architecture, mobile & web), NestJS/TypeScript (backend modulaire, REST, WebSocket), React 19, PostgreSQL/PostGIS (requêtes géospatiales, Prisma ORM), Redis, Python/FastAPI, intégration LLM (Google Gemini, Groq/LLaMA 3.3 70B), n8n (automatisation, workflows RAG)."
     },
     "role_and_status": "Mirado travaille principalement en solo sur ses projets, de la conception UML jusqu'au déploiement. Il a aussi collaboré en équipe sur GeoTrano (projet portes ouvertes ESPA). Il cherche des opportunités freelance ou remote, notamment sur des projets Full-Stack, mobile Flutter, ou intégration IA.",
     "contact": {
