@@ -33,7 +33,7 @@
         "role": "Sur SoaLink, Mirado était le seul développeur : conception UML complète (cas d'utilisation, séquences, activités, classes pour 5 rôles), modélisation Merise, développement backend NestJS, développement mobile/web Flutter en Clean Architecture, intégration LLM, déploiement. Projet soutenu et validé en Licence 3."
       },
       "links": {
-        "github": "https://github.com/newplayer500p/soalink",
+        "github": "",
         "demo": ""
       },
       "media": {
@@ -84,7 +84,7 @@
         "role": "Sur GeoTrano, Mirado a développé le système anti-fraude GPS de bout en bout, le système de notifications complet, et le modèle freemium. Projet en équipe dans le cadre des portes ouvertes ESPA."
       },
       "links": {
-        "github": "https://github.com/newplayer500p/geotrano",
+        "github": "",
         "demo": ""
       },
       "media": {
