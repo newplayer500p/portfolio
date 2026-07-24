@@ -9,7 +9,6 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
   const isFeatured = !!project.featured;
   const count = screenshots.length;
 
-  const [rotationAngle, setRotationAngle] = useState(0);
   const [rotationSpeed, setRotationSpeed] = useState(0.5); // speed factor (0 to 1.5)
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [lightboxIndex, setLightboxIndex] = useState(null); // Lightbox index
@@ -17,16 +16,9 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
   const stageRef = useRef(null);
   const angleRef = useRef(0);
   const animRef = useRef(null);
+  const sliderRef = useRef(null);
 
-  // Sync state angleRef
-  useEffect(() => {
-    angleRef.current = rotationAngle;
-    if (stageRef.current) {
-      stageRef.current.style.setProperty('--rot', `${rotationAngle}deg`);
-    }
-  }, [rotationAngle]);
-
-  // High-performance 60fps GPU-accelerated rotation using requestAnimationFrame
+  // High-performance GPU-accelerated rotation driven strictly via rAF without React state re-renders
   useEffect(() => {
     if (!isAutoRotating || count <= 1 || rotationSpeed === 0) return;
 
@@ -35,15 +27,17 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
       const delta = (now - lastTime) / 1000;
       lastTime = now;
 
-      // Calculate new angle smoothly in forward order (1 -> 2 -> 3 -> ... -> n)
+      // Calculate new angle smoothly (forward order 1 -> 2 -> 3 -> ... -> n)
       const nextAngle = (angleRef.current - rotationSpeed * 25 * delta + 360) % 360;
       angleRef.current = nextAngle;
 
       if (stageRef.current) {
         stageRef.current.style.setProperty('--rot', `${nextAngle}deg`);
       }
+      if (sliderRef.current) {
+        sliderRef.current.value = Math.round(nextAngle);
+      }
 
-      setRotationAngle(nextAngle);
       animRef.current = requestAnimationFrame(animate);
     };
 
@@ -80,6 +74,15 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
   const handleNextImage = (e) => {
     e?.stopPropagation();
     setLightboxIndex((prev) => (prev + 1) % count);
+  };
+
+  const handleManualAngleChange = (e) => {
+    setIsAutoRotating(false);
+    const newAngle = parseFloat(e.target.value);
+    angleRef.current = newAngle;
+    if (stageRef.current) {
+      stageRef.current.style.setProperty('--rot', `${newAngle}deg`);
+    }
   };
 
   return (
@@ -125,31 +128,24 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                   className="relative w-full h-full flex items-center justify-center"
                   style={{
                     transformStyle: 'preserve-3d',
-                    transform: `rotateY(var(--rot, ${rotationAngle}deg))`,
+                    transform: `rotateY(var(--rot, 0deg))`,
+                    willChange: 'transform',
                   }}
                   onMouseEnter={() => setIsAutoRotating(false)}
                   onMouseLeave={() => setIsAutoRotating(true)}
                 >
                   {screenshots.map((imgUrl, index) => {
                     const angleDeg = (index / count) * 360;
-                    const currentTotalAngleRad = (((angleDeg + rotationAngle) % 360) * Math.PI) / 180;
-                    
-                    // Depth math for 3D realism
-                    const cosZ = Math.cos(currentTotalAngleRad);
-                    const zIndex = Math.round(cosZ * 500 + 500);
-                    const opacity = Math.max(0.4, (cosZ + 1.4) / 2.4);
-                    const scale = Math.max(0.78, (cosZ + 2.2) / 3.2);
 
                     return (
                       <div
                         key={index}
-                        className="absolute top-1/2 left-1/2 cursor-pointer group transition-opacity duration-200"
+                        className="absolute top-1/2 left-1/2 cursor-pointer group"
                         onClick={() => setLightboxIndex(index)}
                         style={{
-                          transform: `translate(-50%, -50%) rotateY(${angleDeg}deg) translateZ(${radius}px) rotateY(calc(-${angleDeg}deg - var(--rot, ${rotationAngle}deg))) scale(${scale})`,
+                          transform: `translate(-50%, -50%) rotateY(${angleDeg}deg) translateZ(${radius}px) rotateY(calc(-${angleDeg}deg - var(--rot, 0deg)))`,
                           transformStyle: 'preserve-3d',
-                          zIndex: zIndex,
-                          opacity: opacity,
+                          willChange: 'transform',
                         }}
                         title={`Capture ${index + 1} / ${count} — Cliquer pour agrandir`}
                       >
@@ -180,21 +176,14 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                     Angle :
                   </span>
                   <input
+                    ref={sliderRef}
                     type="range"
                     min="0"
                     max="360"
-                    value={Math.round(rotationAngle)}
-                    onChange={(e) => {
-                      setIsAutoRotating(false);
-                      const newAngle = parseFloat(e.target.value);
-                      setRotationAngle(newAngle);
-                      angleRef.current = newAngle;
-                    }}
+                    defaultValue={0}
+                    onChange={handleManualAngleChange}
                     className="flex-1 accent-cyan-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
                   />
-                  <span className="text-cyan-400 font-mono font-semibold w-9 text-right">
-                    {Math.round(rotationAngle)}°
-                  </span>
                 </div>
 
                 {/* Speed Slider Control */}
