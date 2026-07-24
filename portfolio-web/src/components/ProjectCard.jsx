@@ -1,12 +1,17 @@
-import React from 'react';
-import { FileText, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Image, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import GithubIcon from './GithubIcon';
 
 export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const demoVideo = project.media?.demo_video;
   const hasImages = (project.media?.screenshots?.length || 0) > 0;
-  const hasGithub = !!project.links?.github;
+  const hasGithub = !!(project.links?.github && project.links.github.trim());
   const isFeatured = !!project.featured;
+
+  const summary = project.details?.summary || '';
+  const isLongSummary = summary.length > 150;
 
   const hasActions = hasImages || isFeatured || hasGithub;
 
@@ -19,10 +24,28 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
           {project.title}
         </h3>
 
-        {/* Short description */}
-        <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
-          {project.details?.summary}
-        </p>
+        {/* Short description with inline expand / collapse toggle */}
+        <div>
+          <p className={`text-sm text-slate-400 leading-relaxed ${isExpanded ? '' : 'line-clamp-3'}`}>
+            {summary}
+          </p>
+          {isLongSummary && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="inline-flex items-center gap-1 text-xs text-cyan-400 font-medium hover:underline mt-1.5 cursor-pointer bg-transparent border-none p-0"
+            >
+              {isExpanded ? (
+                <>
+                  Réduire <ChevronUp className="w-3 h-3" />
+                </>
+              ) : (
+                <>
+                  Lire la suite <ChevronDown className="w-3 h-3" />
+                </>
+              )}
+            </button>
+          )}
+        </div>
 
         {/* Video player — only if demo_video exists */}
         {demoVideo && (
@@ -58,8 +81,8 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
               onClick={() => onOpenDetails(project)}
               className="btn-secondary py-2 px-4 text-xs"
             >
-              <FileText className="w-3.5 h-3.5 text-slate-400" />
-              Détails
+              <Image className="w-3.5 h-3.5 text-slate-400" />
+              Images
             </button>
           )}
 
@@ -69,7 +92,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
               className="btn-secondary py-2 px-4 text-xs text-cyan-400 border-cyan-500/20 bg-cyan-500/5 hover:bg-cyan-500/10"
             >
               <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-              En savoir plus (IA)
+              Assistant IA
             </button>
           )}
 
@@ -82,7 +105,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
               title="Code source GitHub"
             >
               <GithubIcon className="w-3.5 h-3.5 text-slate-400" />
-              Code source
+              Code
             </a>
           )}
         </div>
