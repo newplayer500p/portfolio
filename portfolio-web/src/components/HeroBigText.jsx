@@ -11,12 +11,19 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
           <div className="relative">
             {/* Photo container with subtle glow */}
             <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/10">
-              <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 flex items-center justify-center">
-                {/* Placeholder — replace with actual profile photo */}
-                <span className="font-display font-extrabold text-7xl text-white/20 select-none">
-                  HM
-                </span>
-              </div>
+              {profile?.profile ? (
+                <img
+                  src={profile.profile}
+                  alt={profile.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 flex items-center justify-center">
+                  <span className="font-display font-extrabold text-7xl text-white/20 select-none">
+                    HM
+                  </span>
+                </div>
+              )}
             </div>
             {/* Status badge */}
             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-emerald-500/30 text-xs font-semibold text-emerald-400 shadow-lg">

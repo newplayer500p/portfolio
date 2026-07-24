@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Send, Download, CheckCircle2, ArrowUpRight } from 'lucide-react';
+
+const LinkedinIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+);
 import GithubIcon from './GithubIcon';
 
 export default function ContactSection({ profile, onDownloadCV }) {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', subject: '', message: '' });
   const [status, setStatus] = useState('idle');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name || !formData.message) return;
     
     setStatus('sending');
     
     // Open mailto link pre-filled with user's input
     const mailtoSubject = encodeURIComponent(formData.subject || `Message de ${formData.name}`);
-    const mailtoBody = encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    const mailtoBody = encodeURIComponent(`De: ${formData.name}\n\nMessage:\n${formData.message}`);
     
     setTimeout(() => {
       setStatus('sent');
       window.location.href = `mailto:${profile.contact?.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', subject: '', message: '' });
       setTimeout(() => setStatus('idle'), 3000);
     }, 500);
   };
@@ -40,42 +46,69 @@ export default function ContactSection({ profile, onDownloadCV }) {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Links list */}
-            <div className="space-y-3">
-              <a
-                href={`mailto:${profile.contact?.email}`}
-                className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 hover:bg-white/[0.06] transition-all group"
-              >
-                <div className="flex items-center gap-3.5 min-w-0">
-                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <span className="text-sm font-medium text-slate-200 truncate">{profile.contact?.email}</span>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors shrink-0" />
-              </a>
-
-              <a
-                href={`tel:${profile.contact?.phone?.replace(/\s+/g, '')}`}
-                className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 hover:bg-white/[0.06] transition-all group"
-              >
-                <div className="flex items-center gap-3.5">
-                  <Phone className="w-4 h-4 text-purple-400 shrink-0" />
-                  <span className="text-sm font-medium text-slate-200">{profile.contact?.phone}</span>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-colors shrink-0" />
-              </a>
-
-              {profile.contact?.github && (
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">Email</p>
                 <a
-                  href={profile.contact.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`mailto:${profile.contact?.email}`}
+                  className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 hover:bg-white/[0.06] transition-all group"
+                >
+                  <div className="flex items-center gap-3.5 min-w-0">
+                    <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <span className="text-sm font-medium text-slate-200 truncate">{profile.contact?.email}</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors shrink-0" />
+                </a>
+              </div>
+
+              <div className="space-y-1">
+                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">Téléphone & WhatsApp</p>
+                <a
+                  href={`tel:${profile.contact?.phone?.replace(/\s+/g, '')}`}
                   className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 hover:bg-white/[0.06] transition-all group"
                 >
                   <div className="flex items-center gap-3.5">
-                    <GithubIcon className="w-4 h-4 text-slate-300 shrink-0" />
-                    <span className="text-sm font-medium text-slate-200">github.com/newplayer500p</span>
+                    <Phone className="w-4 h-4 text-purple-400 shrink-0" />
+                    <span className="text-sm font-medium text-slate-200">{profile.contact?.phone}</span>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors shrink-0" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-colors shrink-0" />
                 </a>
+              </div>
+
+              {profile.contact?.github && (
+                <div className="space-y-1">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">GitHub</p>
+                  <a
+                    href={profile.contact.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 hover:bg-white/[0.06] transition-all group"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <GithubIcon className="w-4 h-4 text-slate-300 shrink-0" />
+                      <span className="text-sm font-medium text-slate-200">github.com/newplayer500p</span>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors shrink-0" />
+                  </a>
+                </div>
+              )}
+
+              {profile.contact?.linkedin && (
+                <div className="space-y-1">
+                  <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">LinkedIn</p>
+                  <a
+                    href={profile.contact.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 hover:bg-white/[0.06] transition-all group"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <LinkedinIcon className="w-4 h-4 text-blue-400 shrink-0" />
+                      <span className="text-sm font-medium text-slate-200">Haja Mirado Rasolofoson</span>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors shrink-0" />
+                  </a>
+                </div>
               )}
             </div>
 
@@ -93,31 +126,22 @@ export default function ContactSection({ profile, onDownloadCV }) {
 
           {/* Right Column: Form */}
           <div className="lg:col-span-7">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Nom</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Votre nom"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950/60 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:bg-slate-950 transition-all text-sm"
-                  />
-                </div>
+            <div className="space-y-1 mb-4">
+              <h3 className="text-base font-bold text-white font-display">Envoyez-moi un message</h3>
+              <p className="text-xs text-slate-400">Pour toute opportunité, collaboration ou question technique.</p>
+            </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Email</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="votre.email@exemple.com"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950/60 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:bg-slate-950 transition-all text-sm"
-                  />
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-400">Nom</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Votre nom"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900/40 border border-slate-700/50 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:bg-slate-950 transition-all text-sm"
+                />
               </div>
 
               <div className="space-y-1.5">
@@ -127,7 +151,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Objet de votre message"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-950/60 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:bg-slate-950 transition-all text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900/40 border border-slate-700/50 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:bg-slate-950 transition-all text-sm"
                 />
               </div>
 
@@ -139,7 +163,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Décrivez votre projet ou votre demande..."
-                  className="w-full px-4 py-3 rounded-xl bg-slate-950/60 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:bg-slate-950 transition-all text-sm resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900/40 border border-slate-700/50 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 focus:bg-slate-950 transition-all text-sm resize-none"
                 ></textarea>
               </div>
 
