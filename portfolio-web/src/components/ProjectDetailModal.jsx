@@ -87,18 +87,18 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-slate-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
+        className="relative w-full max-w-4xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
 
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-slate-950/80">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-white/5 bg-slate-100/90 dark:bg-slate-950/80">
           <div>
-            <h2 className="font-display font-bold text-xl text-white">
+            <h2 className="font-display font-bold text-xl text-slate-900 dark:text-white">
               {project.title}
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">{project.category} — {project.period}</p>
@@ -116,7 +116,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
 
               {/* 3D Orbit Stage — Centered & Larger */}
               <div
-                className="relative mx-auto overflow-hidden rounded-2xl bg-slate-950/90 border border-white/5 flex items-center justify-center select-none"
+                className="relative mx-auto overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-950/90 border border-slate-200 dark:border-white/5 flex items-center justify-center select-none"
                 style={{
                   perspective: '1200px',
                   width: '100%',

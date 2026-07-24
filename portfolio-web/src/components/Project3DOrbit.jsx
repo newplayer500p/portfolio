@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Maximize2, RotateCw, Image as ImageIcon, Video } from 'lucide-react';
 
 export default function Project3DOrbit({ project, onSelectImage }) {
@@ -10,14 +10,24 @@ export default function Project3DOrbit({ project, onSelectImage }) {
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
   const [activeSpotlight, setActiveSpotlight] = useState(0);
 
+  const videoRef = useRef(null);
+
   // Auto-rotate 3D screenshot ring smoothly
   useEffect(() => {
-    if (!isAutoRotating || screenshots.length <= 1) return;
+    if (!isAutoRotating || screenshots.length <= 1 || isPlayingVideo) return;
     const interval = setInterval(() => {
       setRotationAngle((prev) => (prev + 0.6) % 360);
     }, 40);
     return () => clearInterval(interval);
-  }, [isAutoRotating, screenshots.length]);
+  }, [isAutoRotating, screenshots.length, isPlayingVideo]);
+
+  const handlePlayVideo = () => {
+    setIsPlayingVideo(true);
+    setIsAutoRotating(false);
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
 
   const count = screenshots.length;
   const radius = Math.min(260, Math.max(160, count * 35));
@@ -66,19 +76,23 @@ export default function Project3DOrbit({ project, onSelectImage }) {
       <div className="orbit-container-3d min-h-[340px] sm:min-h-[400px]">
         
         {/* Center Media (Video or Main Active Image) */}
-        <div className="orbit-center-media max-w-[280px] sm:max-w-[340px] w-full">
+        <div className="orbit-center-media max-w-[280px] sm:max-w-[340px] w-full relative z-30 pointer-events-auto">
           {demoVideo ? (
             <div className="relative group rounded-xl overflow-hidden bg-black aspect-video border border-cyan-500/30">
               <video
+                ref={videoRef}
                 src={demoVideo}
-                controls={isPlayingVideo}
-                className="w-full h-full object-cover"
+                controls
+                playsInline
+                className="w-full h-full object-cover relative z-10"
                 poster={screenshots[0] || ''}
+                onPlay={() => { setIsPlayingVideo(true); setIsAutoRotating(false); }}
+                onPause={() => setIsPlayingVideo(false)}
               />
               {!isPlayingVideo && (
-                <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center group-hover:bg-slate-950/40 transition-all">
+                <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center group-hover:bg-slate-950/40 transition-all z-20">
                   <button
-                    onClick={() => setIsPlayingVideo(true)}
+                    onClick={handlePlayVideo}
                     className="w-14 h-14 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 flex items-center justify-center shadow-lg shadow-cyan-500/40 transition-transform transform group-hover:scale-110 cursor-pointer"
                     title="Lancer la vidéo"
                   >
@@ -112,7 +126,7 @@ export default function Project3DOrbit({ project, onSelectImage }) {
         {/* Floating Screenshots Orbit Ring (CSS 3D Engine) */}
         {count > 0 && (
           <div
-            className="orbit-stage-3d pointer-events-auto"
+            className="orbit-stage-3d pointer-events-none absolute inset-0 z-10"
             style={{
               transform: `rotateX(10deg) rotateY(${rotationAngle}deg)`,
             }}

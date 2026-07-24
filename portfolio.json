@@ -5,6 +5,27 @@
     "period": "2026",
     "bio": "RASOLOFOSON Haja Mirado est un développeur Full-Stack étudiant en Génie Logiciel (L3) à l'École Supérieure Polytechnique d'Antsirabe (ESPA), Madagascar. Il conçoit et déploie des applications web et mobiles complètes, des systèmes backend complexes, et intègre des solutions IA/LLM dans ses projets.",
     "profile": "https://res.cloudinary.com/sxzy2als/image/upload/v1784879035/profile_oxab1i.jpg",
+    "about": {
+      "title": "À propos de moi",
+      "paragraphs": [
+        "En 3e année de Génie Logiciel à l'ESPA Antsirabe, je développe des applications web et mobiles en travaillant autant sur le code backend que sur les interfaces.",
+        "Avant d'écrire les premières lignes de code, je prends le temps de poser la modélisation UML et le schéma de la base de données. Cela me permet de construire des APIs REST bien organisées sur NestJS ou FastAPI, d'utiliser PostGIS pour les données géospatiales, et de connecter le tout à des applications Flutter ou React."
+      ],
+      "cards": [
+        {
+          "title": "Modélisation préalable",
+          "description": "Rédaction des cas d'utilisation, des diagrammes de séquence et des schémas de base de données avant l'implémentation."
+        },
+        {
+          "title": "Développement Full-Stack",
+          "description": "Création d'APIs REST modulaires backend et développement des interfaces web et mobiles associées."
+        },
+        {
+          "title": "Intégration d'outils IA",
+          "description": "Ajout de fonctionnalités basées sur des modèles de langage (Gemini, LLaMA) et du traitement audio/vidéo selon les besoins du projet."
+        }
+      ]
+    },
     "skills": {
       "tools": [
         {

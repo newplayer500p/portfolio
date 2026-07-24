@@ -10,16 +10,16 @@ export default function TechMetricsVisual({ profile }) {
 
       {/* Section Header */}
       <div>
-        <h2 className="text-display-lg text-white">Mes compétences</h2>
+        <h2 className="text-display-lg text-slate-900 dark:text-white">Mes compétences</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
         {/* Left Panel — Outils & Technologies */}
         <div className="glass-panel p-6 sm:p-8 space-y-6 glow-border flex flex-col">
-          <div className="flex items-center gap-2.5 border-b border-white/5 pb-4">
-            <Terminal className="w-4 h-4 text-cyan-400" />
-            <h3 className="text-xs font-bold text-slate-300 font-display tracking-widest uppercase">
+          <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
+            <Terminal className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
               Outils & Technologies
             </h3>
           </div>
@@ -28,16 +28,16 @@ export default function TechMetricsVisual({ profile }) {
             {tools.map((group, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-xl bg-white/[0.02] border border-white/5 space-y-3 flex flex-col justify-center items-start hover:border-cyan-500/20 hover:bg-white/[0.04] transition-all"
+                className="p-5 rounded-xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/5 space-y-3 flex flex-col justify-start items-start hover:border-cyan-500/30 hover:bg-slate-100 dark:hover:bg-white/[0.04] transition-all"
               >
-                <p className="text-sm font-bold text-white font-display">
+                <p className="text-base font-bold text-slate-900 dark:text-white font-display">
                   {group.category}
                 </p>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {group.items.map((tool) => (
                     <span
                       key={tool}
-                      className="px-2.5 py-1 rounded-full bg-slate-800/60 text-slate-300 text-xs font-medium border border-slate-700/30"
+                      className="px-3 py-1.5 rounded-full bg-slate-200/80 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-medium border border-slate-300 dark:border-slate-700/50"
                     >
                       {tool}
                     </span>
@@ -50,9 +50,9 @@ export default function TechMetricsVisual({ profile }) {
 
         {/* Right Panel — Compétences clés */}
         <div className="glass-panel p-6 sm:p-8 space-y-6 glow-border flex flex-col">
-          <div className="flex items-center gap-2.5 border-b border-white/5 pb-4">
-            <Code2 className="w-4 h-4 text-cyan-400" />
-            <h3 className="text-xs font-bold text-slate-300 font-display tracking-widest uppercase">
+          <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
+            <Code2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
               Compétences clés
             </h3>
           </div>
@@ -61,12 +61,12 @@ export default function TechMetricsVisual({ profile }) {
             {competences.map((comp, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2 flex flex-col justify-center items-start hover:border-cyan-500/20 hover:bg-white/[0.04] transition-all"
+                className="p-5 rounded-xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/5 space-y-2.5 flex flex-col justify-start items-start hover:border-cyan-500/30 hover:bg-slate-100 dark:hover:bg-white/[0.04] transition-all"
               >
-                <h4 className="font-display font-bold text-white text-sm leading-snug">
+                <h4 className="font-display font-bold text-slate-900 dark:text-white text-base leading-snug">
                   {comp.title}
                 </h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {comp.detail}
                 </p>
               </div>

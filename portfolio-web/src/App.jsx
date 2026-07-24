@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchPortfolioData } from './data/portfolioData';
 import Header from './components/Header';
 import HeroBigText from './components/HeroBigText';
+import AboutSection from './components/AboutSection';
 import ProjectCard from './components/ProjectCard';
 import ProjectDetailModal from './components/ProjectDetailModal';
 import TechMetricsVisual from './components/TechMetricsVisual';
@@ -20,6 +21,15 @@ export default function App() {
 
   useEffect(() => {
     fetchPortfolioData().then((res) => setData(res));
+    // Initialize theme: default to dark if not set
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+    }
   }, []);
 
   const handleDownloadCV = () => {
@@ -95,7 +105,7 @@ PROJETS MAJEURS:
   });
 
   return (
-    <div className="min-h-screen bg-[#07080c] text-slate-100 font-body relative selection:bg-cyan-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] font-body relative selection:bg-cyan-500 selection:text-slate-950 transition-colors duration-300">
       
       {/* Top Header */}
       <Header
@@ -109,14 +119,17 @@ PROJETS MAJEURS:
         onDownloadCV={handleDownloadCV}
       />
 
+      {/* About Section */}
+      <AboutSection profile={profile} />
+
       {/* Projects Section */}
       <section id="realisations" className="py-24 px-6 max-w-6xl mx-auto space-y-12">
 
         {/* Section Title & Filter */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <h2 className="text-display-lg text-white">Mes réalisations</h2>
+          <h2 className="text-display-lg text-slate-900 dark:text-white">Mes réalisations</h2>
 
-          <div className="flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/5">
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-200/60 dark:bg-white/5 border border-slate-300/50 dark:border-white/5">
             {[
               { key: 'all', label: 'Tous' },
               { key: 'flagship', label: 'Projets phares' },
@@ -127,8 +140,8 @@ PROJETS MAJEURS:
                 onClick={() => setActiveTab(tab.key)}
                 className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   activeTab === tab.key
-                    ? 'bg-white text-slate-950'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {tab.label}

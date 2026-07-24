@@ -26,7 +26,7 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
               )}
             </div>
             {/* Status badge */}
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-emerald-500/30 text-xs font-semibold text-emerald-400 shadow-lg">
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-emerald-500/30 text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-lg">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               Disponible pour opportunités
             </div>
@@ -37,16 +37,16 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
         <div className="space-y-8">
           {/* Name */}
           <div className="space-y-2">
-            <h1 className="text-display-xl text-white">
+            <h1 className="text-display-xl text-slate-900 dark:text-white">
               {profile.name}
             </h1>
-            <p className="text-lg text-slate-400 font-medium">
+            <p className="text-lg text-slate-600 dark:text-slate-400 font-medium">
               Développeur Full-Stack — L3 Génie Logiciel, ESPA Antsirabe
             </p>
           </div>
 
           {/* Short bio — 2-3 lines max */}
-          <p className="text-base text-slate-300 leading-relaxed max-w-lg">
+          <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-lg">
             Je conçois et déploie des applications web et mobiles complètes, des systèmes backend complexes, et j'intègre des solutions IA dans mes projets.
           </p>
 
