@@ -203,7 +203,12 @@ PROJETS MAJEURS:
         <AIChatModal
           targetProject={aiTargetProject}
           profile={profile}
+          projects={projects}
           onClose={() => setIsAIOpen(false)}
+          onOpenProjectDetail={(p) => {
+            setIsAIOpen(false);
+            setDetailProject(p);
+          }}
         />
       )}
 
