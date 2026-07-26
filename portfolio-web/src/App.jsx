@@ -9,6 +9,7 @@ import TechMetricsVisual from './components/TechMetricsVisual';
 import ContactSection from './components/ContactSection';
 import AIChatModal from './components/AIChatModal';
 import Footer from './components/Footer';
+import RevealOnScroll from './components/RevealOnScroll';
 import { Sparkles } from 'lucide-react';
 
 export default function App() {
@@ -114,65 +115,76 @@ PROJETS MAJEURS:
       />
 
       {/* Main Hero Section */}
-      <HeroBigText
-        profile={profile}
-        onOpenContact={handleScrollToContact}
-        onDownloadCV={handleDownloadCV}
-      />
+      <RevealOnScroll delay={0}>
+        <HeroBigText
+          profile={profile}
+          onOpenContact={handleScrollToContact}
+          onDownloadCV={handleDownloadCV}
+        />
+      </RevealOnScroll>
 
       {/* About Section */}
-      <AboutSection profile={profile} />
+      <RevealOnScroll delay={100}>
+        <AboutSection profile={profile} />
+      </RevealOnScroll>
 
       {/* Projects Section */}
       <section id="realisations" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto space-y-8 sm:space-y-12">
 
         {/* Section Title & Filter */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
-          <h2 className="text-display-lg text-slate-900 dark:text-white">Mes réalisations</h2>
+        <RevealOnScroll delay={0}>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+            <h2 className="text-display-lg text-slate-900 dark:text-white">Mes réalisations</h2>
 
-          <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-[#f3ebe1] dark:bg-white/5 border border-[#e5dacd] dark:border-white/5 overflow-x-auto max-w-full self-end">
-            {[
-              { key: 'all', label: 'Tous' },
-              { key: 'flagship', label: 'Projets phares' },
-              { key: 'learning', label: 'Mini-projets' },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                  activeTab === tab.key
-                    ? 'bg-[#7c5c44] text-[#fdf8f4] dark:bg-white dark:text-slate-950 shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-[#f3ebe1] dark:bg-white/5 border border-[#e5dacd] dark:border-white/5 overflow-x-auto max-w-full self-end">
+              {[
+                { key: 'all', label: 'Tous' },
+                { key: 'flagship', label: 'Projets phares' },
+                { key: 'learning', label: 'Mini-projets' },
+              ].map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    activeTab === tab.key
+                      ? 'bg-[#7c5c44] text-[#fdf8f4] dark:bg-white dark:text-slate-950 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        </RevealOnScroll>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {filteredProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onOpenDetails={(p) => setDetailProject(p)}
-              onOpenAI={(p) => handleOpenProjectAI(p)}
-            />
+          {filteredProjects.map((project, idx) => (
+            <RevealOnScroll key={project.id} delay={(idx % 2) * 150}>
+              <ProjectCard
+                project={project}
+                onOpenDetails={(p) => setDetailProject(p)}
+                onOpenAI={(p) => handleOpenProjectAI(p)}
+              />
+            </RevealOnScroll>
           ))}
         </div>
 
       </section>
 
       {/* Tech Metrics & Visual Architecture Graphic Section */}
-      <TechMetricsVisual profile={profile} />
+      <RevealOnScroll delay={100}>
+        <TechMetricsVisual profile={profile} />
+      </RevealOnScroll>
 
       {/* Contact Form & CV Download Section */}
-      <ContactSection
-        profile={profile}
-        onDownloadCV={handleDownloadCV}
-      />
+      <RevealOnScroll delay={100}>
+        <ContactSection
+          profile={profile}
+          onDownloadCV={handleDownloadCV}
+        />
+      </RevealOnScroll>
 
       {/* Footer */}
       <Footer
