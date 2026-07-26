@@ -2,15 +2,13 @@ name: Deploy React App to GitHub Pages
 
 on:
   push:
-    branches: ['main'] # Change en 'master' si ta branche principale s'appelle master
+    branches: ['main'] # Remplace par 'master' si ta branche s'appelle master
 
-# Autorisations requises pour publier sur GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Annule les builds précédents si tu push plusieurs fois d'affilée
 concurrency:
   group: 'pages'
   cancel-in-progress: true
@@ -22,6 +20,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
+    # Indique à GitHub Actions de travailler dans le sous-dossier portfolio-web
+    defaults:
+      run:
+        working-directory: ./portfolio-web
+
     steps:
       - name: Checkout le code
         uses: actions/checkout@v4
@@ -29,11 +32,10 @@ jobs:
       - name: Configurer Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm' # Utilise le cache npm pour accélérer le build
+          node-version: 22
 
       - name: Installer les dépendances
-        run: npm ci
+        run: npm install
 
       - name: Générer le build React
         run: npm run build
@@ -41,7 +43,7 @@ jobs:
       - name: Uploader l'artefact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Remplace par './build' si tu utilises Create React App
+          path: './portfolio-web/dist'
 
       - name: Déployer sur GitHub Pages
         id: deployment
