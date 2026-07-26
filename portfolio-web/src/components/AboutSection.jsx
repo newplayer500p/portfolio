@@ -12,7 +12,7 @@ export default function AboutSection({ profile }) {
   ];
 
   return (
-    <section id="apropos" className="py-24 px-6 max-w-6xl mx-auto space-y-12">
+    <section id="apropos" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto space-y-8 sm:space-y-12">
       
       {/* Section Header */}
       <div>
@@ -21,10 +21,10 @@ export default function AboutSection({ profile }) {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
         
         {/* Left Panel — Story & Bio */}
-        <div className="lg:col-span-6 glass-panel p-6 sm:p-8 space-y-6 glow-border flex flex-col justify-between">
+        <div className="lg:col-span-6 glass-panel p-5 sm:p-8 space-y-6 glow-border flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
               <UserCheck className="w-4 h-4 text-amber-900 dark:text-cyan-400" />

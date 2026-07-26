@@ -63,8 +63,11 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxIndex, count]);
 
-  // 3D Circle Radius — Spaced properly to prevent overlapping
-  const radius = Math.min(480, Math.max(340, count * 90));
+  // Responsive 3D Circle Radius — Spaced properly on mobile & desktop
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  const radius = isMobile 
+    ? Math.min(240, Math.max(160, count * 50))
+    : Math.min(480, Math.max(340, count * 90));
 
   const handlePrevImage = (e) => {
     e?.stopPropagation();
@@ -87,40 +90,38 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-2 sm:p-4 bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
+        className="relative w-full max-w-4xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[96vh] sm:max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
 
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-white/5 bg-slate-100/90 dark:bg-slate-950/80">
-          <div>
-            <h2 className="font-display font-bold text-xl text-slate-900 dark:text-white">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 dark:border-white/5 bg-slate-100/90 dark:bg-slate-950/80">
+          <div className="min-w-0 pr-2">
+            <h2 className="font-display font-bold text-base sm:text-xl text-slate-900 dark:text-white truncate">
               {project.title}
             </h2>
-            <p className="text-xs text-slate-500 mt-0.5">{project.category} — {project.period}</p>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">{project.category} — {project.period}</p>
           </div>
-          <button onClick={onClose} className="btn-icon">
+          <button onClick={onClose} className="btn-icon shrink-0">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body / 3D Orbit Display */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
+        <div className="p-3 sm:p-8 overflow-y-auto space-y-4 sm:space-y-6">
 
           {count > 0 ? (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
 
-              {/* 3D Orbit Stage — Centered & Larger */}
+              {/* 3D Orbit Stage — Centered & Responsive */}
               <div
-                className="relative mx-auto overflow-hidden rounded-2xl bg-slate-50 dark:bg-slate-950/90 border border-slate-200 dark:border-white/5 flex items-center justify-center select-none"
+                className="relative mx-auto overflow-hidden rounded-2xl bg-slate-50 dark:bg-slate-950/90 border border-slate-200 dark:border-white/5 flex items-center justify-center select-none h-[340px] sm:h-[520px] w-full"
                 style={{
                   perspective: '1200px',
-                  width: '100%',
-                  height: '520px',
                 }}
               >
                 <div
@@ -149,16 +150,16 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                         }}
                         title={`Capture ${index + 1} / ${count} — Cliquer pour agrandir`}
                       >
-                        {/* Larger container preserving image aspect ratio without deformation */}
-                        <div className="relative max-w-[300px] max-h-[250px] rounded-xl overflow-hidden border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-950/95 shadow-lg dark:shadow-2xl group-hover:border-cyan-400/80 group-hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center p-1.5">
+                        {/* Responsive container preserving image aspect ratio */}
+                        <div className="relative max-w-[200px] sm:max-w-[300px] max-h-[170px] sm:max-h-[250px] rounded-xl overflow-hidden border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-950/95 shadow-lg dark:shadow-2xl group-hover:border-cyan-400/80 group-hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center p-1 sm:p-1.5">
                           <img
                             src={imgUrl}
                             alt={`${project.title} — capture ${index + 1}`}
-                            className="max-w-full max-h-[230px] w-auto h-auto object-contain rounded-lg"
+                            className="max-w-full max-h-[150px] sm:max-h-[230px] w-auto h-auto object-contain rounded-lg"
                             loading="lazy"
                           />
                           <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
-                            <Maximize2 className="w-7 h-7 text-cyan-600 dark:text-white drop-shadow-md" />
+                            <Maximize2 className="w-5 h-5 sm:w-7 sm:h-7 text-cyan-600 dark:text-white drop-shadow-md" />
                           </div>
                         </div>
                       </div>

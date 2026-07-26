@@ -124,13 +124,13 @@ PROJETS MAJEURS:
       <AboutSection profile={profile} />
 
       {/* Projects Section */}
-      <section id="realisations" className="py-24 px-6 max-w-6xl mx-auto space-y-12">
+      <section id="realisations" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto space-y-8 sm:space-y-12">
 
         {/* Section Title & Filter */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
           <h2 className="text-display-lg text-slate-900 dark:text-white">Mes réalisations</h2>
 
-          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-200/60 dark:bg-white/5 border border-slate-300/50 dark:border-white/5">
+          <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-[#f3ebe1] dark:bg-white/5 border border-[#e5dacd] dark:border-white/5 overflow-x-auto max-w-full self-end">
             {[
               { key: 'all', label: 'Tous' },
               { key: 'flagship', label: 'Projets phares' },
@@ -139,9 +139,9 @@ PROJETS MAJEURS:
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   activeTab === tab.key
-                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 shadow-sm'
+                    ? 'bg-[#7c5c44] text-[#fdf8f4] dark:bg-white dark:text-slate-950 shadow-sm'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >

@@ -31,7 +31,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 max-w-6xl mx-auto space-y-12">
+    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto space-y-8 sm:space-y-12">
       
       {/* Section Header */}
       <div>
@@ -39,10 +39,10 @@ export default function ContactSection({ profile, onDownloadCV }) {
       </div>
 
       {/* Two Standalone Glass Cards Side by Side */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
         
         {/* Left Card: Direct Links & CV */}
-        <div className="lg:col-span-5 glass-panel p-6 sm:p-8 glow-border flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 glass-panel p-5 sm:p-8 glow-border flex flex-col justify-between space-y-6">
           <div className="space-y-4">
             <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase border-b border-slate-200 dark:border-white/5 pb-4">
               Coordonnées
@@ -53,13 +53,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                 <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">Email</p>
                 <a
                   href={`mailto:${profile.contact?.email}`}
-                  className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
+                  className="flex items-center justify-between p-4 rounded-xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-[#e0d6c8] hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <Mail className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
+                    <Mail className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                     <span className="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">{profile.contact?.email}</span>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-[#7c5c44] dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                 </a>
               </div>
 
@@ -67,13 +67,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                 <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">Téléphone & WhatsApp</p>
                 <a
                   href={`tel:${profile.contact?.phone?.replace(/\s+/g, '')}`}
-                  className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
+                  className="flex items-center justify-between p-4 rounded-xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-[#e0d6c8] hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
                 >
                   <div className="flex items-center gap-3.5">
-                    <Phone className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
+                    <Phone className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                     <span className="text-sm font-medium text-slate-800 dark:text-slate-200">{profile.contact?.phone}</span>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-[#7c5c44] dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                 </a>
               </div>
 
@@ -84,13 +84,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                     href={profile.contact.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
+                    className="flex items-center justify-between p-4 rounded-xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-[#e0d6c8] hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
                   >
                     <div className="flex items-center gap-3.5">
-                      <GithubIcon className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
+                      <GithubIcon className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                       <span className="text-sm font-medium text-slate-800 dark:text-slate-200">github.com/newplayer500p</span>
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
+                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-[#7c5c44] dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                   </a>
                 </div>
               )}
@@ -102,13 +102,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                     href={profile.contact.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
+                    className="flex items-center justify-between p-4 rounded-xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-[#e0d6c8] hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
                   >
                     <div className="flex items-center gap-3.5">
-                      <LinkedinIcon className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
+                      <LinkedinIcon className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                       <span className="text-sm font-medium text-slate-800 dark:text-slate-200">Haja Mirado Rasolofoson</span>
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
+                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-[#7c5c44] dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                   </a>
                 </div>
               )}
@@ -119,9 +119,9 @@ export default function ContactSection({ profile, onDownloadCV }) {
           <div className="pt-2">
             <button
               onClick={onDownloadCV}
-              className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl border border-amber-300/60 dark:border-slate-700/50 bg-amber-100/60 dark:bg-slate-800/60 text-amber-950 dark:text-slate-200 hover:bg-amber-200/60 dark:hover:bg-slate-800 text-xs font-semibold transition-all"
+              className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl border border-[#e8dfd5] dark:border-slate-700/50 bg-[#faf6f0] dark:bg-slate-800/60 text-[#261e17] dark:text-slate-200 hover:bg-[#f5efe6] dark:hover:bg-slate-800 text-xs font-semibold transition-all"
             >
-              <Download className="w-4 h-4 text-amber-900 dark:text-cyan-400" />
+              <Download className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400" />
               <span>Télécharger mon CV</span>
             </button>
           </div>
