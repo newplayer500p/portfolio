@@ -34,41 +34,12 @@ export default function App() {
   }, []);
 
   const handleDownloadCV = () => {
-    // Create an interactive print/save CV preview trigger
-    const cvText = `
-========================================================================
-CURRICULUM VITAE — RASOLOFOSON HAJA MIRADO
-Développeur Full-Stack / L3 Génie Logiciel (ESPA Antsirabe, Madagascar)
-Email: hajamirado10@gmail.com | Tel: +261 33 78 838 25
-GitHub: https://github.com/newplayer500p
-========================================================================
-
-COMPÉTENCES CLÉS:
-• Mobile & Web: Flutter (Clean Architecture, Web & Mobile), React 19, Dart, TypeScript.
-• Backend & Microservices: NestJS, REST, WebSockets (Socket.IO), Redis, Python (FastAPI).
-• Bases de Données & GIS: PostgreSQL, PostGIS (requêtes géospatiales), Prisma ORM.
-• IA & LLM: Intégration Google Gemini API, Groq (LLaMA 3.3 70B), WhisperX, Demucs CUDA.
-• Conception: Modélisation UML (Cas d'utilisation, Séquence, Classe, Activité), Merise.
-
-PROJETS MAJEURS:
-1. SoaLink (PFE Licence 3 - 2026)
-   - Plateforme de santé numérique avec triage médical IA en 2 passes.
-   - Recherche géospatiale PostGIS d'établissements, messagerie temps réel.
-   - Schéma Prisma 26 tables, chiffrement AES-256-CBC, Redis, Supabase S3.
-
-2. GeoTrano (Portes Ouvertes ESPA - 2026)
-   - Plateforme immobilière avec système anti-fraude GPS (token 30 min, validation ±500m).
-   - React 19, NestJS, PostGIS, Turborepo monorepo, notifications temps réel.
-
-3. Auto-Soutitrage Vidéo & Audio (2025-2026)
-   - Application IA Python FastAPI / Flutter avec WhisperX et Demucs accélération CUDA.
-    `;
-
-    const blob = new Blob([cvText], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
+    const cvUrl = data?.profile?.cv_url || 'https://res.cloudinary.com/sxzy2als/raw/upload/v1785078975/CV_q7gagd.docx';
     const a = document.createElement('a');
-    a.href = url;
-    a.download = 'CV_RASOLOFOSON_Haja_Mirado.txt';
+    a.href = cvUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.download = 'CV_RASOLOFOSON_Haja_Mirado.docx';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
