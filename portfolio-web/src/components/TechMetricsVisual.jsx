@@ -18,7 +18,7 @@ export default function TechMetricsVisual({ profile }) {
         {/* Left Panel — Outils & Technologies */}
         <div className="glass-panel p-6 sm:p-8 space-y-6 glow-border flex flex-col">
           <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
-            <Terminal className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            <Terminal className="w-4 h-4 text-amber-900 dark:text-cyan-400" />
             <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
               Outils & Technologies
             </h3>
@@ -51,7 +51,7 @@ export default function TechMetricsVisual({ profile }) {
         {/* Right Panel — Compétences clés */}
         <div className="glass-panel p-6 sm:p-8 space-y-6 glow-border flex flex-col">
           <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
-            <Code2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            <Code2 className="w-4 h-4 text-amber-900 dark:text-cyan-400" />
             <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
               Compétences clés
             </h3>

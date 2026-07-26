@@ -185,9 +185,11 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
 
   const suggestedQuestions = isProjectSpecific
     ? [
-        `Architecture de ${targetProject.title} ?`,
-        `Plus grand défi technique ?`,
-        `Rôle de Mirado ?`
+        'Résumé du projet',
+        'Architecture technique',
+        'Fonctionnalités clés',
+        'Défis techniques',
+        'Rôle de Mirado'
       ]
     : [
         `Compétences clés ?`,

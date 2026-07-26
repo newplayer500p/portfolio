@@ -184,7 +184,7 @@ PROJETS MAJEURS:
       {/* Floating AI Trigger */}
       <button
         onClick={handleOpenGeneralAI}
-        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 flex items-center justify-center shadow-2xl shadow-cyan-500/40 hover:scale-105 transition-all cursor-pointer"
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-amber-900 dark:bg-cyan-500 hover:bg-amber-800 dark:hover:bg-cyan-400 text-amber-50 dark:text-slate-950 flex items-center justify-center shadow-2xl shadow-amber-900/20 dark:shadow-cyan-500/40 hover:scale-105 transition-all cursor-pointer"
         title="Assistant IA"
       >
         <Sparkles className="w-5 h-5" />

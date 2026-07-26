@@ -6,9 +6,9 @@ export default function AboutSection({ profile }) {
   if (!about) return null;
 
   const cardIcons = [
-    <Compass className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />,
-    <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
-    <Cpu className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+    <Compass className="w-5 h-5 text-amber-900 dark:text-cyan-400" />,
+    <Layers className="w-5 h-5 text-amber-900 dark:text-cyan-400" />,
+    <Cpu className="w-5 h-5 text-amber-900 dark:text-cyan-400" />
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function AboutSection({ profile }) {
         <div className="lg:col-span-6 glass-panel p-6 sm:p-8 space-y-6 glow-border flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
-              <UserCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <UserCheck className="w-4 h-4 text-amber-900 dark:text-cyan-400" />
               <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
                 Parcours & Philosophie
               </h3>

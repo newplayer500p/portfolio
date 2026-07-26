@@ -32,7 +32,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
           {isLongSummary && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center gap-1 text-xs text-cyan-600 dark:text-cyan-400 font-medium hover:underline mt-1.5 cursor-pointer bg-transparent border-none p-0"
+              className="inline-flex items-center gap-1 text-xs text-amber-900 dark:text-cyan-400 font-medium hover:underline mt-1.5 cursor-pointer bg-transparent border-none p-0"
             >
               {isExpanded ? (
                 <>
@@ -91,9 +91,9 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
           {isFeatured && (
             <button
               onClick={() => onOpenAI(project)}
-              className="btn-secondary py-2 px-4 text-xs text-cyan-600 dark:text-cyan-400 border-cyan-500/30 bg-cyan-500/10 dark:bg-cyan-500/5 hover:bg-cyan-500/20"
+              className="btn-secondary py-2 px-4 text-xs text-amber-900 dark:text-cyan-400 border-amber-300/60 dark:border-cyan-500/30 bg-amber-100/60 dark:bg-cyan-500/5 hover:bg-amber-200/60 dark:hover:bg-cyan-500/20"
             >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-900 dark:text-cyan-400" />
               Assistant IA
             </button>
           )}

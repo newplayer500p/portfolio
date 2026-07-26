@@ -57,7 +57,7 @@ export default function Header({ profile, onOpenGeneralAI }) {
 
           <button
             onClick={onOpenGeneralAI}
-            className="flex items-center gap-2 px-4 py-2 rounded-full text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 bg-cyan-500/10 dark:bg-cyan-500/5 hover:bg-cyan-500/20 transition-all cursor-pointer text-xs font-semibold"
+            className="flex items-center gap-2 px-4 py-2 rounded-full text-amber-900 dark:text-cyan-400 border border-amber-300/60 dark:border-cyan-500/30 bg-amber-100/60 dark:bg-cyan-500/5 hover:bg-amber-200/60 dark:hover:bg-cyan-500/20 transition-all cursor-pointer text-xs font-semibold"
           >
             <Sparkles className="w-3.5 h-3.5" />
             Assistant IA

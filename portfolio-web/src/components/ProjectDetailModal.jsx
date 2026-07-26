@@ -63,8 +63,8 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxIndex, count]);
 
-  // 3D Circle Radius
-  const radius = Math.min(440, Math.max(260, count * 40));
+  // 3D Circle Radius — Spaced properly to prevent overlapping
+  const radius = Math.min(480, Math.max(340, count * 90));
 
   const handlePrevImage = (e) => {
     e?.stopPropagation();
@@ -116,7 +116,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
 
               {/* 3D Orbit Stage — Centered & Larger */}
               <div
-                className="relative mx-auto overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-950/90 border border-slate-200 dark:border-white/5 flex items-center justify-center select-none"
+                className="relative mx-auto overflow-hidden rounded-2xl bg-slate-50 dark:bg-slate-950/90 border border-slate-200 dark:border-white/5 flex items-center justify-center select-none"
                 style={{
                   perspective: '1200px',
                   width: '100%',
@@ -150,15 +150,15 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                         title={`Capture ${index + 1} / ${count} — Cliquer pour agrandir`}
                       >
                         {/* Larger container preserving image aspect ratio without deformation */}
-                        <div className="relative max-w-[320px] max-h-[270px] rounded-xl overflow-hidden border border-white/15 bg-slate-950/95 shadow-2xl group-hover:border-cyan-400/80 group-hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center p-1.5">
+                        <div className="relative max-w-[300px] max-h-[250px] rounded-xl overflow-hidden border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-950/95 shadow-lg dark:shadow-2xl group-hover:border-cyan-400/80 group-hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center p-1.5">
                           <img
                             src={imgUrl}
                             alt={`${project.title} — capture ${index + 1}`}
-                            className="max-w-full max-h-[250px] w-auto h-auto object-contain rounded-lg"
+                            className="max-w-full max-h-[230px] w-auto h-auto object-contain rounded-lg"
                             loading="lazy"
                           />
                           <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
-                            <Maximize2 className="w-7 h-7 text-white drop-shadow-md" />
+                            <Maximize2 className="w-7 h-7 text-cyan-600 dark:text-white drop-shadow-md" />
                           </div>
                         </div>
                       </div>
@@ -172,7 +172,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                 
                 {/* Manual Angle Slider */}
                 <div className="flex-1 flex items-center gap-3 w-full">
-                  <span className="text-slate-400 font-medium text-[11px] whitespace-nowrap">
+                  <span className="text-slate-600 dark:text-slate-400 font-medium text-[11px] whitespace-nowrap">
                     Angle :
                   </span>
                   <input
@@ -182,13 +182,13 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                     max="360"
                     defaultValue={0}
                     onChange={handleManualAngleChange}
-                    className="flex-1 accent-cyan-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                    className="flex-1 accent-cyan-500 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
                   />
                 </div>
 
                 {/* Speed Slider Control */}
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <span className="text-slate-400 font-medium text-[11px] whitespace-nowrap">
+                  <span className="text-slate-600 dark:text-slate-400 font-medium text-[11px] whitespace-nowrap">
                     Vitesse :
                   </span>
                   <input
@@ -198,12 +198,12 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                     step="0.1"
                     value={rotationSpeed}
                     onChange={(e) => setRotationSpeed(parseFloat(e.target.value))}
-                    className="w-24 accent-cyan-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                    className="w-24 accent-cyan-500 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
                   />
                   <button
                     onClick={() => setIsAutoRotating(!isAutoRotating)}
                     className={`btn-secondary py-1 px-3 text-[11px] flex items-center gap-1.5 ${
-                      isAutoRotating ? 'text-cyan-400 border-cyan-500/30' : 'text-slate-400'
+                      isAutoRotating ? 'text-cyan-600 dark:text-cyan-400 border-cyan-500/30' : 'text-slate-600 dark:text-slate-400'
                     }`}
                   >
                     {isAutoRotating ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
@@ -223,7 +223,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-white/5 flex items-center justify-between gap-3 bg-slate-950/80">
+        <div className="px-6 py-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between gap-3 bg-slate-100/90 dark:bg-slate-950/80">
           {isFeatured && (
             <button
               onClick={() => { onClose(); onOpenAI(project); }}

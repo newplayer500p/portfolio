@@ -53,13 +53,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                 <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">Email</p>
                 <a
                   href={`mailto:${profile.contact?.email}`}
-                  className="flex items-center justify-between p-4 rounded-xl bg-slate-100/70 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 hover:border-cyan-500/30 hover:bg-slate-200/60 dark:hover:bg-white/[0.06] transition-all group"
+                  className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <Mail className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
+                    <Mail className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
                     <span className="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">{profile.contact?.email}</span>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                 </a>
               </div>
 
@@ -67,13 +67,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                 <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider pl-1">Téléphone & WhatsApp</p>
                 <a
                   href={`tel:${profile.contact?.phone?.replace(/\s+/g, '')}`}
-                  className="flex items-center justify-between p-4 rounded-xl bg-slate-100/70 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 hover:border-cyan-500/30 hover:bg-slate-200/60 dark:hover:bg-white/[0.06] transition-all group"
+                  className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
                 >
                   <div className="flex items-center gap-3.5">
-                    <Phone className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
+                    <Phone className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
                     <span className="text-sm font-medium text-slate-800 dark:text-slate-200">{profile.contact?.phone}</span>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors shrink-0" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                 </a>
               </div>
 
@@ -84,13 +84,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                     href={profile.contact.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 rounded-xl bg-slate-100/70 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 hover:border-cyan-500/30 hover:bg-slate-200/60 dark:hover:bg-white/[0.06] transition-all group"
+                    className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
                   >
                     <div className="flex items-center gap-3.5">
-                      <GithubIcon className="w-4 h-4 text-slate-700 dark:text-slate-300 shrink-0" />
+                      <GithubIcon className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
                       <span className="text-sm font-medium text-slate-800 dark:text-slate-200">github.com/newplayer500p</span>
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors shrink-0" />
+                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                   </a>
                 </div>
               )}
@@ -102,13 +102,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
                     href={profile.contact.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 rounded-xl bg-slate-100/70 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 hover:border-cyan-500/30 hover:bg-slate-200/60 dark:hover:bg-white/[0.06] transition-all group"
+                    className="flex items-center justify-between p-4 rounded-xl bg-amber-50/60 dark:bg-white/[0.03] border border-amber-200/50 dark:border-white/5 hover:border-amber-300 hover:bg-amber-100/50 dark:hover:bg-white/[0.06] transition-all group"
                   >
                     <div className="flex items-center gap-3.5">
-                      <LinkedinIcon className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                      <LinkedinIcon className="w-4 h-4 text-amber-900 dark:text-cyan-400 shrink-0" />
                       <span className="text-sm font-medium text-slate-800 dark:text-slate-200">Haja Mirado Rasolofoson</span>
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors shrink-0" />
+                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
                   </a>
                 </div>
               )}
@@ -119,9 +119,9 @@ export default function ContactSection({ profile, onDownloadCV }) {
           <div className="pt-2">
             <button
               onClick={onDownloadCV}
-              className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700/50 bg-slate-200/80 dark:bg-slate-800/60 text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-300 dark:hover:bg-slate-800 text-xs font-semibold transition-all"
+              className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl border border-amber-300/60 dark:border-slate-700/50 bg-amber-100/60 dark:bg-slate-800/60 text-amber-950 dark:text-slate-200 hover:bg-amber-200/60 dark:hover:bg-slate-800 text-xs font-semibold transition-all"
             >
-              <Download className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <Download className="w-4 h-4 text-amber-900 dark:text-cyan-400" />
               <span>Télécharger mon CV</span>
             </button>
           </div>
@@ -144,7 +144,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Votre nom"
-                    className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-amber-800/40 dark:placeholder-slate-600 focus:outline-none focus:border-amber-500/40 dark:focus:border-cyan-500/60 transition-all text-sm"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -155,7 +155,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="votre.email@exemple.com"
-                    className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-amber-800/40 dark:placeholder-slate-600 focus:outline-none focus:border-amber-500/40 dark:focus:border-cyan-500/60 transition-all text-sm"
                   />
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Objet de votre message"
-                  className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-all text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-amber-800/40 dark:placeholder-slate-600 focus:outline-none focus:border-amber-500/40 dark:focus:border-cyan-500/60 transition-all text-sm"
                 />
               </div>
 
@@ -179,7 +179,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Décrivez votre projet ou votre demande..."
-                  className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-cyan-500/60 transition-all text-sm resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] text-slate-900 dark:text-white placeholder-amber-800/40 dark:placeholder-slate-600 focus:outline-none focus:border-amber-500/40 dark:focus:border-cyan-500/60 transition-all text-sm resize-none"
                 ></textarea>
               </div>
             </div>
@@ -188,7 +188,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full btn-primary py-3.5 shadow-lg shadow-cyan-500/20 group text-xs tracking-wide"
+                className="w-full btn-primary py-3.5 shadow-lg shadow-amber-950/15 dark:shadow-cyan-500/20 group text-xs tracking-wide"
               >
                 {status === 'sending' ? (
                   <span>Ouverture de votre messagerie...</span>

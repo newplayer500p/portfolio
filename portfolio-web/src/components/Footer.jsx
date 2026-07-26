@@ -11,7 +11,7 @@ export default function Footer({ profile }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 dark:border-slate-800/60 bg-slate-50 dark:bg-[#050609] py-8 px-6 transition-colors duration-300">
+    <footer className="border-t border-amber-200/40 dark:border-slate-800/60 bg-[#faf5f0] dark:bg-[#050609] py-8 px-6 transition-colors duration-300">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5">
         
         {/* Left — Copyright */}
@@ -26,7 +26,7 @@ export default function Footer({ profile }) {
               href={profile.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+              className="p-2 rounded-lg hover:bg-amber-100/60 dark:hover:bg-slate-800 text-slate-500 hover:text-amber-900 dark:hover:text-white transition-colors"
               title="GitHub"
             >
               <GithubIcon className="w-4 h-4" />
@@ -37,7 +37,7 @@ export default function Footer({ profile }) {
               href={profile.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="p-2 rounded-lg hover:bg-amber-100/60 dark:hover:bg-slate-800 text-slate-500 hover:text-amber-900 dark:hover:text-blue-400 transition-colors"
               title="LinkedIn"
             >
               <LinkedinIcon className="w-4 h-4" />
