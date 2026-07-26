@@ -87,7 +87,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
       onClick={onClose}
     >
       <div

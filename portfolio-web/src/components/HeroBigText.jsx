@@ -35,19 +35,19 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
 
         {/* Right — Short Bio & CTAs */}
         <div className="space-y-8">
-          {/* Name */}
+          {/* Name & Title */}
           <div className="space-y-2">
             <h1 className="text-display-xl text-slate-900 dark:text-white">
-              {profile.name}
+              {profile?.name}
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400 font-medium">
-              Développeur Full-Stack — L3 Génie Logiciel, ESPA Antsirabe
+              {profile?.title}
             </p>
           </div>
 
-          {/* Short bio — 2-3 lines max */}
+          {/* Short bio */}
           <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-lg">
-            Je conçois et déploie des applications web et mobiles complètes, des systèmes backend complexes, et j'intègre des solutions IA dans mes projets.
+            {profile?.bio}
           </p>
 
           {/* CTA Buttons */}

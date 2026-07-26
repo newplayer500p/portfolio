@@ -37,31 +37,31 @@
 }
 
 html.light {
-  /* Light Theme Overrides */
-  --bg-page: #f8fafc;
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --bg-card-inner: rgba(15, 23, 42, 0.03);
-  --bg-nav: rgba(255, 255, 255, 0.9);
+  /* Light Theme — Warm Cream / Peach Tones (Modern Portfolio Trend) */
+  --bg-page: #fdf8f4;
+  --bg-card: rgba(255, 252, 249, 0.92);
+  --bg-card-inner: rgba(180, 120, 60, 0.03);
+  --bg-nav: rgba(253, 248, 244, 0.92);
   
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-glow: rgba(8, 145, 178, 0.35);
+  --border-subtle: rgba(180, 140, 100, 0.12);
+  --border-glow: rgba(8, 145, 178, 0.3);
   
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
+  --text-primary: #1a1510;
+  --text-secondary: #5c4f42;
+  --text-muted: #8a7e72;
 
-  --input-bg: rgba(241, 245, 249, 0.9);
-  --input-border: rgba(203, 213, 225, 0.9);
+  --input-bg: rgba(255, 250, 245, 0.9);
+  --input-border: rgba(200, 175, 150, 0.35);
 
   /* Light Mode Buttons */
   --btn-primary-bg: #0891b2;
   --btn-primary-text: #ffffff;
   --btn-primary-hover: #0e7490;
   
-  --btn-secondary-bg: rgba(15, 23, 42, 0.05);
-  --btn-secondary-text: #0f172a;
-  --btn-secondary-border: rgba(15, 23, 42, 0.12);
-  --btn-secondary-hover-bg: rgba(15, 23, 42, 0.1);
+  --btn-secondary-bg: rgba(180, 140, 100, 0.06);
+  --btn-secondary-text: #1a1510;
+  --btn-secondary-border: rgba(180, 140, 100, 0.15);
+  --btn-secondary-hover-bg: rgba(180, 140, 100, 0.12);
 }
 
 * {
@@ -321,11 +321,12 @@ html, body {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  padding: 24px 36px 84px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   animation: aiFadeIn 0.2s ease-out;
+  pointer-events: auto;
 }
 
 @keyframes aiFadeIn {
@@ -340,9 +341,10 @@ html, body {
 
 /* Modal Container */
 .ai-modal {
+  pointer-events: auto;
   width: 100%;
   max-width: 420px;
-  height: min(620px, calc(100vh - 32px));
+  height: min(600px, calc(100vh - 120px));
   display: flex;
   flex-direction: column;
   border-radius: 20px;

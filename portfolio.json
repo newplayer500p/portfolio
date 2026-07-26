@@ -1,15 +1,15 @@
 {
   "profile": {
     "name": "RASOLOFOSON Haja Mirado",
-    "title": "Développeur Full-Stack / L3 Génie Logiciel (ESPA Antsirabe)",
+    "title": "Développeur Full-Stack — L3 Génie Logiciel, ESP-Antsirabe",
     "period": "2026",
-    "bio": "RASOLOFOSON Haja Mirado est un développeur Full-Stack étudiant en Génie Logiciel (L3) à l'École Supérieure Polytechnique d'Antsirabe (ESPA), Madagascar. Il conçoit et déploie des applications web et mobiles complètes, des systèmes backend complexes, et intègre des solutions IA/LLM dans ses projets.",
+    "bio": "Je conçois et déploie des applications web et mobiles complètes, des systèmes backend robustes et des fonctionnalités IA intégrée.",
     "profile": "https://res.cloudinary.com/sxzy2als/image/upload/v1784879035/profile_oxab1i.jpg",
     "about": {
       "title": "À propos de moi",
       "paragraphs": [
-        "En 3e année de Génie Logiciel à l'ESPA Antsirabe, je développe des applications web et mobiles en travaillant autant sur le code backend que sur les interfaces.",
-        "Avant d'écrire les premières lignes de code, je prends le temps de poser la modélisation UML et le schéma de la base de données. Cela me permet de construire des APIs REST bien organisées sur NestJS ou FastAPI, d'utiliser PostGIS pour les données géospatiales, et de connecter le tout à des applications Flutter ou React."
+        "Étudiant en 3e année de Génie Logiciel à l'ESP-Antsirabe, je conçois des applications web et mobiles performantes en accordant autant d'importance à la robustesse du backend qu'à la qualité des interfaces.",
+        "Ma démarche repose sur une phase de conception (UML, schéma relationnel) pour garantir des architectures évolutives. Cette structure permet de livrer des APIs REST claires, une gestion de données maîtrisée et des applications fluides."
       ],
       "cards": [
         {
@@ -22,7 +22,7 @@
         },
         {
           "title": "Intégration d'outils IA",
-          "description": "Ajout de fonctionnalités basées sur des modèles de langage (Gemini, LLaMA) et du traitement audio/vidéo selon les besoins du projet."
+          "description": "Ajout de fonctionnalités basées sur des modèles de langage (Gemini, LLaMA) selon les besoins du projet."
         }
       ]
     },
@@ -30,25 +30,45 @@
       "tools": [
         {
           "category": "Mobile & Web",
-          "items": ["Flutter", "Dart", "React 19"]
+          "items": [
+            "Flutter",
+            "Dart",
+            "React 19"
+          ]
         },
         {
           "category": "Backend",
-          "items": ["NestJS", "FastAPI", "Spring Boot"]
+          "items": [
+            "NestJS",
+            "FastAPI",
+            "Spring Boot"
+          ]
         },
         {
           "category": "Données",
-          "items": ["PostgreSQL", "PostGIS", "Redis", "Prisma ORM", "Supabase", "MongoDB"]
+          "items": [
+            "PostgreSQL",
+            "PostGIS",
+            "Redis",
+            "Prisma ORM",
+            "Supabase",
+            "MongoDB"
+          ]
         },
         {
           "category": "IA & Automatisation",
-          "items": ["n8n", "WhisperX", "Demucs", "Google Gemini"]
+          "items": [
+            "n8n",
+            "WhisperX",
+            "Demucs",
+            "Google Gemini"
+          ]
         }
       ],
       "competences": [
         {
           "title": "Conception & Modélisation",
-          "detail": "Modélisation UML (cas d'utilisation, séquences, classes, activités) et Merise pour systèmes complexes multi-rôles."
+          "detail": "Modélisation UML (cas d'utilisation, séquences, classes, activités) et pour systèmes complexes."
         },
         {
           "title": "Architecture Logicielle",
@@ -64,7 +84,7 @@
         }
       ]
     },
-    "role_and_status": "Mirado travaille principalement en solo sur ses projets, de la conception UML jusqu'au déploiement. Il a aussi collaboré en équipe sur GeoTrano (projet portes ouvertes ESPA). Il cherche des opportunités freelance ou remote, notamment sur des projets Full-Stack, mobile Flutter, ou intégration IA.",
+    "role_and_status": "Développeur autonome capable de piloter un projet complet de la conception UML jusqu'au déploiement, tout en ayant l'habitude de collaborer en équipe (ex: projet GeoTrano). Ouvert aux opportunités Freelance et Remote sur des projets Full-Stack, mobile Flutter ou intégration IA.",
     "contact": {
       "email": "hajamirado10@gmail.com",
       "phone": "+261 33 78 838 25",
@@ -80,11 +100,22 @@
       "category": "Projet de Fin d'Études — Licence 3",
       "featured": true,
       "period": "2026",
-      "stack": ["NestJS", "Flutter", "React", "PostgreSQL", "PostGIS", "Redis", "Termux", "Supabase Storage", "LLaMA 3.3 70B"],
+      "stack": [
+        "NestJS",
+        "Flutter",
+        "React",
+        "PostgreSQL",
+        "PostGIS",
+        "Redis",
+        "Termux",
+        "Supabase Storage",
+        "firebase",
+        "LLaMA 3.3 70B"
+      ],
       "details": {
         "summary": "SoaLink est une plateforme de santé numérique conçue pour Madagascar, permettant aux patients d'être orientés intelligemment vers les établissements de santé adaptés à leur situation. Elle combine un moteur IA de triage médical, une recherche géospatiale par proximité, une prise de rendez-vous depuis la carte, et une messagerie temps réel.",
         "architecture": "Architecture backend NestJS modulaire avec un schéma Prisma de 26 tables incluant le support PostGIS. Chiffrement AES-256-CBC des données sensibles. Cache Redis pour les sessions et résultats fréquents. Stockage de fichiers via Supabase Storage (S3) avec URLs signées. Messagerie temps réel via Socket.IO avec IoAdapter personnalisé. Deux modes de planning médecin : CRÉNEAU (plages horaires fixes) et QUOTA (nombre de consultations par période).",
-        "features": "Fonctionnalités clés de SoaLink : (1) Moteur IA de recherche médicale en 2 passes — détection d'intention (symptômes, préférence, ou combiné) puis recherche ciblée avec jusqu'à 2 questions de clarification. (2) Recherche géospatiale PostGIS d'établissements filtrée par proximité, spécialité, équipement et budget. (3) Prise de rendez-vous directement depuis la carte. (4) Messagerie temps réel avec enregistrement vocal et upload de fichiers. (5) Affichage cartographique des établissements via MapLibre GL.",
+        "features": "Fonctionnalités clés de SoaLink : (1) Moteur IA de recherche médicale en 2 passes — détection d'intention (symptômes, préférence, ou combiné) puis recherche ciblée avec jusqu'à 2 questions de clarification. (2) Recherche géospatiale PostGIS d'établissements filtrée par proximité, spécialité, urgence. (3) Prise de rendez-vous directement depuis l'application. (4) Messagerie temps réel avec enregistrement vocal et upload de fichiers. (5) Affichage cartographique des établissements via MapLibre.",
         "challenges": "Défis techniques majeurs sur SoaLink : (1) Pipeline LLM en 2 appels — classification d'intention puis action ciblée avec recherche PostGIS intégrée. (2) Synchronisation en temps réel entre le type de planning médecin et l'affichage géospatial côté patient. (3) Race condition Flutter Web sur la messagerie vocale (long-press vs tap). (4) Résolution du nom d'interlocuteur à travers plusieurs types d'utilisateurs distincts.",
         "role": "Sur SoaLink, Mirado était le seul développeur : conception UML complète (cas d'utilisation, séquences, activités, classes pour 5 rôles), modélisation Merise, développement backend NestJS, développement mobile/web Flutter en Clean Architecture, intégration LLM, déploiement. Projet soutenu et validé en Licence 3."
       },
@@ -101,7 +132,7 @@
           "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658152/s4_dv4cem.jpg",
           "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658148/s5_qjbycu.jpg",
           "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658147/s6_stpte5.jpg",
-          "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658150/s7_oqvk2d.jpg",          
+          "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658150/s7_oqvk2d.jpg",
           "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658158/s8_xdgd09.jpg",
           "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658152/s9_hvrh5r.jpg",
           "https://res.cloudinary.com/sxzy2als/image/upload/q_auto,f_auto/v1784658157/s10_yzgv6n.jpg",
@@ -131,7 +162,14 @@
       "category": "Projet portes ouvertes ESPA / Application Web",
       "featured": true,
       "period": "2026",
-      "stack": ["NestJS", "React 19", "PostgreSQL", "PostGIS", "Turborepo", "Prisma"],
+      "stack": [
+        "NestJS",
+        "React 19",
+        "PostgreSQL",
+        "PostGIS",
+        "Turborepo",
+        "Prisma"
+      ],
       "details": {
         "summary": "GeoTrano est une plateforme web de géolocalisation d'annonces immobilières pour Madagascar. Elle se distingue par un système anti-fraude GPS innovant pour la validation des photos de biens, un modèle freemium avec vérification d'identité (CIN), et des requêtes spatiales PostGIS pour la recherche par proximité.",
         "architecture": "Architecture monorepo Turborepo avec backend NestJS/TypeScript et frontend React 19. Base de données PostgreSQL/PostGIS avec Prisma ORM. Gestion d'état frontend via Zustand + React Query. Notifications temps réel via WebSocket.",
@@ -167,10 +205,21 @@
       "category": "Projet Multimédia / IA",
       "featured": true,
       "period": "2025-2026",
-      "stack": ["Python", "Flutter", "Whisper", "WhisperX", "Demucs", "PyTorch", "CUDA", "FFmpeg"],
+      "stack": [
+        "Python",
+        "Flutter",
+        "WhisperX",
+        "Demucs",
+        "PyTorch",
+        "CUDA",
+        "FFmpeg"
+      ],
       "details": {
-        "summary": "Application de génération automatique de sous-titres et d'isolation de pistes vocales pour fichiers audio et vidéo. Pipeline IA local utilisant Whisper/WhisperX pour la transcription et Demucs pour la séparation de sources audio, accéléré par GPU CUDA. Interface multiplateforme Flutter.",
-        "architecture": "Backend FastAPI orchestrant un pipeline de traitement multimédia : (1) Séparation de sources audio via Demucs. (2) Transcription et alignement temporel via WhisperX avec accélération CUDA. (3) Génération de fichiers de sous-titres (SRT/VTT) synchronisés. (4) Post-traitement FFmpeg."
+        "summary": "Application de génération automatique de sous-titres personnalisés et d'isolation de pistes vocales pour fichiers audio et vidéo. Traitement IA 100% local utilisant WhisperX pour la transcription et Demucs pour la séparation audio, le tout propulsé par une interface Flutter.",
+        "architecture": "Backend FastAPI orchestrant un pipeline multimédia asynchrone : (1) Séparation de la voix via Demucs. (2) Transcription et alignement temporel mot-à-mot via WhisperX avec accélération CUDA. (3) Traitement et incrustation vidéo via FFmpeg. (4) Interface client multiplateforme Flutter.",
+        "features": "Fonctionnalités clés du projet : (1) Génération de sous-titres hautement personnalisables (styles, polices, couleurs, animations et exports SRT/VTT) pour vidéos et audios. (2) Isolation et nettoyage de la piste vocale. (3) Synchronisation temporelle ultra-précise au niveau du mot, groupe de mot.",
+        "challenges": "Défi principal du projet : l'optimisation de l'accélération GPU (CUDA) et de la gestion VRAM lors de l'enchaînement de modèles IA lourds (Demucs + WhisperX) avec le rendu vidéo FFmpeg. Il a fallu structurer un pipeline asynchrone efficace pour traiter de gros fichiers multimédias sans saturation mémoire ni blocage de l'interface.",
+        "role": "Sur ce projet, Mirado a conçu et développé l'intégralité du pipeline IA sous FastAPI, l'optimisation du traitement GPU CUDA, ainsi que l'interface Flutter. Projet réalisé en solo."
       },
       "links": {
         "github": "https://github.com/newplayer500p/Auto-soutitrage-video-audio",
@@ -193,14 +242,21 @@
       "category": "Mini-projet d'apprentissage",
       "featured": false,
       "period": "2024-2025",
-      "stack": ["React Native", "Expo", "JavaScript ES6+"],
+      "stack": [
+        "React Native",
+        "Expo",
+        "JavaScript ES6+"
+      ],
       "details": {
         "summary": "Adaptation numérique du Fanoron-tsivy, jeu de stratégie traditionnel malgache, jouable à deux ou contre une IA. Implémente les règles complètes de capture sur plateau 9x9 et un moteur IA basé sur un arbre de décision. Projet algorithmique en React Native / Expo."
       },
       "links": {
         "github": "https://github.com/newplayer500p/fanorona_9_game"
       },
-      "media": { "demo_video": null, "screenshots": [] }
+      "media": {
+        "demo_video": null,
+        "screenshots": []
+      }
     },
     {
       "id": "smart-http-server",
@@ -209,14 +265,19 @@
       "category": "Mini-projet d'apprentissage",
       "featured": false,
       "period": "2025",
-      "stack": ["Python"],
+      "stack": [
+        "Python"
+      ],
       "details": {
         "summary": "Serveur HTTP Python natif avec interface stylée, gestion multipart/form-data pour l'upload, streaming et recherche dynamique. Outil utilitaire et exercice Python réseau."
       },
       "links": {
         "github": "https://github.com/newplayer500p/smart-http-server-python"
       },
-      "media": { "demo_video": null, "screenshots": [] }
+      "media": {
+        "demo_video": null,
+        "screenshots": []
+      }
     },
     {
       "id": "morpion-game",
@@ -225,14 +286,20 @@
       "category": "Mini-projet d'apprentissage",
       "featured": false,
       "period": "2024",
-      "stack": ["Dart", "Flutter"],
+      "stack": [
+        "Dart",
+        "Flutter"
+      ],
       "details": {
         "summary": "Jeu de morpion classique en Flutter/Dart. Mini-projet d'apprentissage de la logique de jeu et de la gestion d'état des widgets Flutter."
       },
       "links": {
         "github": "https://github.com/newplayer500p/morpion_game"
       },
-      "media": { "demo_video": null, "screenshots": [] }
+      "media": {
+        "demo_video": null,
+        "screenshots": []
+      }
     }
   ]
 }

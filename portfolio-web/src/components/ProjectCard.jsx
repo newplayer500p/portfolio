@@ -67,7 +67,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
           {project.stack?.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 rounded-full bg-slate-200/70 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 text-xs font-medium border border-slate-300/60 dark:border-slate-700/30 transition-colors"
+              className="px-3 py-1 rounded-full bg-amber-50 dark:bg-slate-800/60 text-amber-900 dark:text-slate-300 text-xs font-medium border border-amber-200/50 dark:border-slate-700/30 transition-colors"
             >
               {tech}
             </span>

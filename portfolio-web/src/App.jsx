@@ -109,6 +109,7 @@ PROJETS MAJEURS:
       
       {/* Top Header */}
       <Header
+        profile={profile}
         onOpenGeneralAI={handleOpenGeneralAI}
       />
 
@@ -189,15 +190,6 @@ PROJETS MAJEURS:
         <Sparkles className="w-5 h-5" />
       </button>
 
-      {/* Detail Modal */}
-      {detailProject && (
-        <ProjectDetailModal
-          project={detailProject}
-          onClose={() => setDetailProject(null)}
-          onOpenAI={(p) => handleOpenProjectAI(p)}
-        />
-      )}
-
       {/* AI Chatbot Modal */}
       {isAIOpen && (
         <AIChatModal
@@ -206,9 +198,17 @@ PROJETS MAJEURS:
           projects={projects}
           onClose={() => setIsAIOpen(false)}
           onOpenProjectDetail={(p) => {
-            setIsAIOpen(false);
             setDetailProject(p);
           }}
+        />
+      )}
+
+      {/* Detail Modal */}
+      {detailProject && (
+        <ProjectDetailModal
+          project={detailProject}
+          onClose={() => setDetailProject(null)}
+          onOpenAI={(p) => handleOpenProjectAI(p)}
         />
       )}
 

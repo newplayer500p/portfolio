@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { X, Sparkles, Send, Bot, User, RefreshCw, AlertCircle, ArrowRight } from 'lucide-react';
 
 const WEBHOOK_URL = 'https://portfolio-n8n-310w.onrender.com/webhook/chat';
-const MAX_INPUT_LENGTH = 500;
+const MAX_INPUT_LENGTH = 400;
 const COLD_START_HINT_MS = 5000;
 
 // ─── Lightweight Markdown Parser ────────────────────────────────────────────
@@ -153,12 +153,26 @@ function ProjectMiniCard({ project, onOpenDetail }) {
   );
 }
 
-// ─── Generate Session ID ────────────────────────────────────────────────────
+// ─── Generate & Manage Session Storage ──────────────────────────────────────
 function generateSessionId() {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
     return crypto.randomUUID();
   }
   return `session-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+}
+
+function getStoredSessionId() {
+  let sid = sessionStorage.getItem('ai_session_id');
+  if (!sid) {
+    sid = generateSessionId();
+    sessionStorage.setItem('ai_session_id', sid);
+  }
+  return sid;
+}
+
+function clearStoredSession() {
+  sessionStorage.removeItem('ai_session_id');
+  sessionStorage.removeItem('ai_messages');
 }
 
 // ─── Main Component ─────────────────────────────────────────────────────────
@@ -181,17 +195,38 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
         `Disponibilité freelance ?`
       ];
 
-  const [messages, setMessages] = useState([
-    { id: 1, sender: 'bot', text: initialGreeting, projectIds: [] }
-  ]);
+  const [messages, setMessages] = useState(() => {
+    const stored = sessionStorage.getItem('ai_messages');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      } catch (e) {
+        // Fallback to initial greeting if parse fails
+      }
+    }
+    return [{ id: 1, sender: 'bot', text: initialGreeting, projectIds: [] }];
+  });
+
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [coldStartHint, setColdStartHint] = useState(false);
   const [error, setError] = useState(null);
 
-  const sessionIdRef = useRef(generateSessionId());
+  const sessionIdRef = useRef(getStoredSessionId());
   const messagesEndRef = useRef(null);
   const coldStartTimerRef = useRef(null);
+
+  // Sync messages to sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem('ai_messages', JSON.stringify(messages));
+  }, [messages]);
+
+  // Handle explicit reset when clicking 'X'
+  const handleResetSessionAndClose = () => {
+    clearStoredSession();
+    onClose();
+  };
 
   // Auto-scroll to latest message
   useEffect(() => {
@@ -307,7 +342,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
   const charRatio = charCount / MAX_INPUT_LENGTH;
 
   return (
-    <div className="ai-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="ai-overlay" onClick={(e) => e.stopPropagation()}>
       <div className="ai-modal">
 
         {/* ─── Header ─── */}
@@ -325,7 +360,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
               </p>
             </div>
           </div>
-          <button onClick={onClose} className="ai-close-btn" aria-label="Fermer">
+          <button onClick={handleResetSessionAndClose} className="ai-close-btn" aria-label="Fermer et réinitialiser">
             <X className="w-4 h-4" />
           </button>
         </div>

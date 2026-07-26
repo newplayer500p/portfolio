@@ -28,7 +28,7 @@ export default function TechMetricsVisual({ profile }) {
             {tools.map((group, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/5 space-y-3 flex flex-col justify-start items-start hover:border-cyan-500/30 hover:bg-slate-100 dark:hover:bg-white/[0.04] transition-all"
+                className="p-5 rounded-xl bg-orange-50/50 dark:bg-white/[0.02] border border-orange-200/40 dark:border-white/5 space-y-3 flex flex-col justify-start items-start hover:border-cyan-500/30 hover:bg-orange-50/80 dark:hover:bg-white/[0.04] transition-all"
               >
                 <p className="text-base font-bold text-slate-900 dark:text-white font-display">
                   {group.category}
@@ -37,7 +37,7 @@ export default function TechMetricsVisual({ profile }) {
                   {group.items.map((tool) => (
                     <span
                       key={tool}
-                      className="px-3 py-1.5 rounded-full bg-slate-200/80 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-medium border border-slate-300 dark:border-slate-700/50"
+                      className="px-3 py-1.5 rounded-full bg-amber-50 dark:bg-slate-800/80 text-amber-900 dark:text-slate-200 text-xs sm:text-sm font-medium border border-amber-200/60 dark:border-slate-700/50"
                     >
                       {tool}
                     </span>
@@ -61,7 +61,7 @@ export default function TechMetricsVisual({ profile }) {
             {competences.map((comp, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/5 space-y-2.5 flex flex-col justify-start items-start hover:border-cyan-500/30 hover:bg-slate-100 dark:hover:bg-white/[0.04] transition-all"
+                className="p-5 rounded-xl bg-orange-50/50 dark:bg-white/[0.02] border border-orange-200/40 dark:border-white/5 space-y-2.5 flex flex-col justify-start items-start hover:border-cyan-500/30 hover:bg-orange-50/80 dark:hover:bg-white/[0.04] transition-all"
               >
                 <h4 className="font-display font-bold text-slate-900 dark:text-white text-base leading-snug">
                   {comp.title}

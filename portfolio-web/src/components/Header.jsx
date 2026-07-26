@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-export default function Header({ onOpenGeneralAI }) {
+export default function Header({ profile, onOpenGeneralAI }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,9 +21,9 @@ export default function Header({ onOpenGeneralAI }) {
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
 
-        {/* Left — Name only, clean */}
+        {/* Left — Dynamic Name */}
         <a href="#" className="font-display font-bold text-slate-900 dark:text-white text-lg tracking-tight hover:opacity-80 transition-opacity">
-          Haja Mirado
+          {profile?.name || 'Haja Mirado'}
         </a>
 
         {/* Right — Navigation links, coherent & minimal */}
