@@ -107,7 +107,7 @@ export default function App() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
             <h2 className="text-display-lg text-slate-900 dark:text-white">Mes réalisations</h2>
 
-            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-[#f3ebe1] dark:bg-white/5 border border-[#e5dacd] dark:border-white/5 overflow-x-auto max-w-full self-end">
+            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-[#f3ebe1] dark:bg-white/5 border border-[#e5dacd] dark:border-white/5 overflow-x-auto max-w-full self-start md:self-end">
               {[
                 { key: 'all', label: 'Tous' },
                 { key: 'flagship', label: 'Projets phares' },

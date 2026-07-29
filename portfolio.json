@@ -11,20 +11,6 @@
       "paragraphs": [
         "Étudiant en 3e année de Génie Logiciel à l'ESP-Antsirabe, je conçois des applications web et mobiles performantes en accordant autant d'importance à la robustesse du backend qu'à la qualité des interfaces.",
         "Ma démarche repose sur une phase de conception (UML, schéma relationnel) pour garantir des architectures évolutives. Cette structure permet de livrer des APIs REST claires, une gestion de données maîtrisée et des applications fluides."
-      ],
-      "cards": [
-        {
-          "title": "Modélisation préalable",
-          "description": "Rédaction des cas d'utilisation, des diagrammes de séquence et des schémas de base de données avant l'implémentation."
-        },
-        {
-          "title": "Développement Full-Stack",
-          "description": "Création d'APIs REST modulaires backend et développement des interfaces web et mobiles associées."
-        },
-        {
-          "title": "Intégration d'outils IA",
-          "description": "Ajout de fonctionnalités basées sur des modèles de langage (Gemini, LLaMA) selon les besoins du projet."
-        }
       ]
     },
     "skills": {
@@ -213,8 +199,7 @@
         "WhisperX",
         "Demucs",
         "PyTorch",
-        "CUDA",
-        "FFmpeg"
+        "CUDA"
       ],
       "details": {
         "summary": "Application de génération automatique de sous-titres personnalisés et d'isolation de pistes vocales pour fichiers audio et vidéo. Traitement IA 100% local utilisant WhisperX pour la transcription et Demucs pour la séparation audio, le tout propulsé par une interface Flutter.",

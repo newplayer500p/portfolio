@@ -66,6 +66,13 @@ html.light {
   --btn-secondary-hover-bg: rgba(180, 140, 100, 0.15);
 }
 
+/* Light Mode Input Placeholder Override (Warm Mocha Taupe — No Slate Blue) */
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #9e8c7c !important;
+  opacity: 0.85;
+}
+
 /* Light Theme Text Contrast Softening (Warm Espresso/Mocha Tones instead of harsh pitch black) */
 html.light .text-slate-900 {
   color: #3d3228;
@@ -354,9 +361,9 @@ html.dark .btn-primary:hover {
   align-items: flex-end;
   justify-content: flex-end;
   padding: 24px 36px 84px 16px;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   animation: aiFadeIn 0.2s ease-out;
   pointer-events: auto;
 }
@@ -381,13 +388,13 @@ html.dark .btn-primary:hover {
   flex-direction: column;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--bg-card);
+  background: rgba(10, 13, 20, 0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-subtle);
   box-shadow:
-    0 24px 80px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(6, 182, 212, 0.08);
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(6, 182, 212, 0.12);
   animation: aiSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -856,6 +863,12 @@ html.light .ai-input-bar {
 }
 
 /* ─── Light Mode AI Chat Modal Overrides (Warm Amber/Espresso — No Cyan/Blue) ─── */
+html.light .ai-modal {
+  background: rgba(253, 248, 244, 0.98);
+  border: 1px solid rgba(180, 140, 100, 0.3);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+}
+
 html.light .ai-header-icon {
   background: rgba(180, 140, 100, 0.12);
   border-color: rgba(180, 140, 100, 0.25);

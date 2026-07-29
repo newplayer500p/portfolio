@@ -1,14 +1,14 @@
 import React from 'react';
-import { Cpu, Layers, Compass, UserCheck } from 'lucide-react';
+import { UserCheck, GraduationCap, Code2, Sparkles } from 'lucide-react';
 
 export default function AboutSection({ profile }) {
   const about = profile?.about;
   if (!about) return null;
 
-  const cardIcons = [
-    <Compass className="w-5 h-5 text-amber-900 dark:text-cyan-400" />,
-    <Layers className="w-5 h-5 text-amber-900 dark:text-cyan-400" />,
-    <Cpu className="w-5 h-5 text-amber-900 dark:text-cyan-400" />
+  const highlights = [
+    { icon: <GraduationCap className="w-4 h-4 text-emerald-500" />, text: "Licence 3 Génie Logiciel" },
+    { icon: <Code2 className="w-4 h-4 text-cyan-400" />, text: "ESP-Antsirabe" },
+    { icon: <Sparkles className="w-4 h-4 text-amber-500" />, text: "Full-Stack & IA" },
   ];
 
   return (
@@ -21,50 +21,32 @@ export default function AboutSection({ profile }) {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+      {/* Main Glass Panel */}
+      <div className="glass-panel p-6 sm:p-10 space-y-8 glow-border">
         
-        {/* Left Panel — Story & Bio */}
-        <div className="lg:col-span-6 glass-panel p-5 sm:p-8 space-y-6 glow-border flex flex-col justify-between">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
-              <UserCheck className="w-4 h-4 text-amber-900 dark:text-cyan-400" />
-              <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
-                Parcours & Philosophie
-              </h3>
-            </div>
-
-            <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
-              {about.paragraphs?.map((p, idx) => (
-                <p key={idx}>{p}</p>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs text-slate-500 font-medium">
-            <span>ESPA Antsirabe</span>
-            <span>•</span>
-            <span>Génie Logiciel (L3)</span>
-          </div>
+        <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
+          <UserCheck className="w-4.5 h-4.5 text-[#7c5c44] dark:text-cyan-400" />
+          <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
+            Parcours & Philosophie
+          </h3>
         </div>
 
-        {/* Right Panel — 3 Key Engineering Pillars */}
-        <div className="lg:col-span-6 flex flex-col gap-4 justify-between">
-          {about.cards?.map((card, idx) => (
+        {/* Paragraphs */}
+        <div className="space-y-5 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+          {about.paragraphs?.map((p, idx) => (
+            <p key={idx}>{p}</p>
+          ))}
+        </div>
+
+        {/* Key Highlights Bar */}
+        <div className="pt-6 border-t border-slate-200 dark:border-white/5 flex flex-wrap gap-3 sm:gap-4 items-center">
+          {highlights.map((h, i) => (
             <div
-              key={idx}
-              className="glass-panel p-6 glow-border space-y-2 flex items-start gap-4 hover:border-cyan-500/30 transition-all flex-1"
+              key={i}
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#faf6f0] dark:bg-white/[0.04] border border-[#eee7de] dark:border-white/10 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200"
             >
-              <div className="p-3 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 shrink-0">
-                {cardIcons[idx % cardIcons.length]}
-              </div>
-              <div className="space-y-1">
-                <h4 className="font-display font-bold text-slate-900 dark:text-white text-base">
-                  {card.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {card.description}
-                </p>
-              </div>
+              {h.icon}
+              <span>{h.text}</span>
             </div>
           ))}
         </div>
