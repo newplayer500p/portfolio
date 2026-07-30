@@ -178,12 +178,12 @@ function clearStoredSession() {
 
 // ─── Main Component ─────────────────────────────────────────────────────────
 export default function AIChatModal({ targetProject, profile, projects, onClose, onOpenProjectDetail }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const isProjectSpecific = !!targetProject;
 
   const initialGreeting = isProjectSpecific
-    ? `Bonjour ! Posez-moi vos questions sur **${targetProject.title}**.`
-    : `Bonjour ! Je suis **Mirado AI**. Posez vos questions sur mes projets, mes compétences ou mes disponibilités.`;
+    ? t('ai_greeting_project').replace('{title}', targetProject.title)
+    : t('ai_greeting_general');
 
   const suggestedQuestions = isProjectSpecific
     ? [
@@ -218,6 +218,21 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
   const sessionIdRef = useRef(getStoredSessionId());
   const messagesEndRef = useRef(null);
   const coldStartTimerRef = useRef(null);
+
+  // Re-generate greeting when language switches
+  useEffect(() => {
+    const newGreeting = isProjectSpecific
+      ? t('ai_greeting_project').replace('{title}', targetProject?.title || '')
+      : t('ai_greeting_general');
+    setMessages((prev) => {
+      // Only update the very first bot message (the greeting)
+      if (prev.length === 0) return prev;
+      const [first, ...rest] = prev;
+      if (first.sender !== 'bot') return prev;
+      return [{ ...first, text: newGreeting }, ...rest];
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   // Sync messages to sessionStorage
   useEffect(() => {
@@ -281,7 +296,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
       });
 
       if (!response.ok) {
-        throw new Error(`Erreur serveur (${response.status})`);
+        throw new Error(`${t('ai_error_server')} (${response.status})`);
       }
 
       const data = await response.json();
@@ -292,7 +307,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
       } else {
         rawOutput = data.output;
       }
-      if (!rawOutput) rawOutput = 'Désolé, je n\'ai pas pu générer de réponse.';
+      if (!rawOutput) rawOutput = t('ai_error_no_response');
 
       const { cleanText, projectIds } = extractShowCards(rawOutput);
 
@@ -305,11 +320,11 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
 
       setMessages((prev) => [...prev, botMsg]);
     } catch (err) {
-      setError(err.message || 'Erreur de connexion');
+      setError(err.message || t('ai_error_generic'));
       const errorMsg = {
         id: Date.now() + 1,
         sender: 'bot',
-        text: '⚠️ Impossible de joindre le serveur IA. Vérifiez votre connexion ou réessayez.',
+        text: t('ai_error_connection'),
         projectIds: [],
         isError: true,
       };
@@ -429,7 +444,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
                   <span></span><span></span><span></span>
                 </div>
                 <span className="ai-typing-label">
-                  {t('ai_typing')}
+                  {coldStartHint ? t('ai_cold_start') : t('ai_typing')}
                 </span>
               </div>
             </div>
