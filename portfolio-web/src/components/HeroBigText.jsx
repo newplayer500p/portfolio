@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowDownRight, Download, Send } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
+  const { t } = useLang();
+
   return (
     <section className="min-h-screen flex items-center pt-24 pb-16 px-4 sm:px-6 max-w-6xl mx-auto">
 
@@ -29,7 +32,7 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
             {/* Intuitive Green Availability Dot at 10:30 Position (Top-Left) */}
             <div
               className="absolute top-3 left-3 z-10 flex items-center justify-center"
-              title="Disponible pour opportunités"
+              title={t('hero_available_title')}
             >
               <span className="absolute inline-flex h-6 w-6 rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
               <span className="relative inline-flex h-4.5 w-4.5 rounded-full bg-emerald-500 ring-4 ring-[#fdf8f4] dark:ring-[#07080c] shadow-md"></span>
@@ -54,16 +57,16 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
 
           <div className="flex flex-wrap gap-4 pt-2 justify-start items-center">
             <a href="#realisations" className="btn-primary text-sm py-3 px-6">
-              Voir mes réalisations
+              {t('hero_cta_projects')}
               <ArrowDownRight className="w-4 h-4" />
             </a>
             <button onClick={onDownloadCV} className="btn-secondary text-sm py-3 px-5">
               <Download className="w-4 h-4" />
-              Télécharger mon CV
+              {t('hero_cta_cv')}
             </button>
             <button onClick={onOpenContact} className="btn-secondary text-sm py-3 px-5">
               <Send className="w-4 h-4" />
-              Me contacter
+              {t('hero_cta_contact')}
             </button>
           </div>
         </div>
@@ -97,7 +100,7 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
           {/* Intuitive Green Availability Dot at 10:30 Position (Top-Left) */}
           <div
             className="absolute top-2 left-2 z-10 flex items-center justify-center"
-            title="Disponible pour opportunités"
+            title={t('hero_available_title')}
           >
             <span className="absolute inline-flex h-5 w-5 rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
             <span className="relative inline-flex h-4 w-4 rounded-full bg-emerald-500 ring-4 ring-[#fdf8f4] dark:ring-[#07080c] shadow-md"></span>
@@ -128,7 +131,7 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
             href="#realisations"
             className="btn-primary text-sm py-3.5 px-8 w-full justify-center shadow-lg"
           >
-            Voir mes réalisations
+            {t('hero_cta_projects')}
             <ArrowDownRight className="w-4 h-4" />
           </a>
 
@@ -138,14 +141,14 @@ export default function HeroBigText({ profile, onOpenContact, onDownloadCV }) {
               className="btn-secondary text-xs py-3 px-4 flex-1 justify-center"
             >
               <Download className="w-3.5 h-3.5" />
-              Mon CV
+              {t('hero_cta_cv_short')}
             </button>
             <button
               onClick={onOpenContact}
               className="btn-secondary text-xs py-3 px-4 flex-1 justify-center"
             >
               <Send className="w-3.5 h-3.5" />
-              Me contacter
+              {t('hero_cta_contact')}
             </button>
           </div>
         </div>

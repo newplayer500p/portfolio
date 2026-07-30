@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
+import { useLang } from '../i18n/LanguageContext';
 
 export default function Header({ profile, onOpenGeneralAI }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -13,10 +16,10 @@ export default function Header({ profile, onOpenGeneralAI }) {
   }, []);
 
   const navLinks = [
-    { href: '#apropos', label: 'À propos' },
-    { href: '#realisations', label: 'Réalisations' },
-    { href: '#competences', label: 'Compétences' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#apropos', label: t('nav_about') },
+    { href: '#realisations', label: t('nav_projects') },
+    { href: '#competences', label: t('nav_skills') },
+    { href: '#contact', label: t('nav_contact') },
   ];
 
   return (
@@ -36,7 +39,7 @@ export default function Header({ profile, onOpenGeneralAI }) {
         </a>
 
         {/* Right — Desktop Navigation & Mobile Actions */}
-        <nav className="flex items-center gap-2.5 sm:gap-6 text-sm font-medium text-slate-600 dark:text-slate-400">
+        <nav className="flex items-center gap-2 sm:gap-4 text-sm font-medium text-slate-600 dark:text-slate-400">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -47,6 +50,7 @@ export default function Header({ profile, onOpenGeneralAI }) {
             </a>
           ))}
 
+          <LanguageToggle />
           <ThemeToggle />
 
           <button
@@ -54,7 +58,7 @@ export default function Header({ profile, onOpenGeneralAI }) {
             className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-amber-900 dark:text-cyan-400 border border-amber-300/60 dark:border-cyan-500/30 bg-amber-100/60 dark:bg-cyan-500/5 hover:bg-amber-200/60 dark:hover:bg-cyan-500/20 transition-all cursor-pointer text-xs font-semibold"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span className="hidden xs:inline">Assistant</span> IA
+            <span className="hidden xs:inline">{t('header_ai_btn')}</span>
           </button>
 
           {/* Mobile Hamburger Toggle */}

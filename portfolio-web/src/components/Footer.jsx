@@ -1,5 +1,6 @@
 import React from 'react';
 import GithubIcon from './GithubIcon';
+import { useLang } from '../i18n/LanguageContext';
 
 const LinkedinIcon = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -9,6 +10,7 @@ const LinkedinIcon = ({ className }) => (
 
 export default function Footer({ profile }) {
   const currentYear = new Date().getFullYear();
+  const { t } = useLang();
 
   return (
     <footer className="border-t border-amber-200/40 dark:border-slate-800/60 bg-[#faf5f0] dark:bg-[#050609] py-8 px-6 transition-colors duration-300">
@@ -16,12 +18,12 @@ export default function Footer({ profile }) {
         
         {/* Left — Copyright */}
         <p className="text-xs text-slate-500 dark:text-slate-500 text-center sm:text-left">
-          © {currentYear} {profile.name}. Tous droits réservés.
+          © {currentYear} {profile?.name}. {t('footer_rights')}
         </p>
 
         {/* Center — Social Icons */}
         <div className="flex items-center gap-3">
-          {profile.contact?.github && (
+          {profile?.contact?.github && (
             <a
               href={profile.contact.github}
               target="_blank"
@@ -32,7 +34,7 @@ export default function Footer({ profile }) {
               <GithubIcon className="w-4 h-4" />
             </a>
           )}
-          {profile.contact?.linkedin && (
+          {profile?.contact?.linkedin && (
             <a
               href={profile.contact.linkedin}
               target="_blank"
@@ -47,10 +49,10 @@ export default function Footer({ profile }) {
 
         {/* Right — Quick nav */}
         <nav className="flex items-center gap-5 text-xs text-slate-500">
-          <a href="#apropos" className="hover:text-slate-900 dark:hover:text-white transition-colors">À propos</a>
-          <a href="#realisations" className="hover:text-slate-900 dark:hover:text-white transition-colors">Projets</a>
-          <a href="#competences" className="hover:text-slate-900 dark:hover:text-white transition-colors">Compétences</a>
-          <a href="#contact" className="hover:text-slate-900 dark:hover:text-white transition-colors">Contact</a>
+          <a href="#apropos" className="hover:text-slate-900 dark:hover:text-white transition-colors">{t('nav_about')}</a>
+          <a href="#realisations" className="hover:text-slate-900 dark:hover:text-white transition-colors">{t('nav_projects')}</a>
+          <a href="#competences" className="hover:text-slate-900 dark:hover:text-white transition-colors">{t('nav_skills')}</a>
+          <a href="#contact" className="hover:text-slate-900 dark:hover:text-white transition-colors">{t('nav_contact')}</a>
         </nav>
 
       </div>

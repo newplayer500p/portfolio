@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Image, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import GithubIcon from './GithubIcon';
+import { useLang } from '../i18n/LanguageContext';
 
 export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { t } = useLang();
 
   const demoVideo = project.media?.demo_video;
   const hasImages = (project.media?.screenshots?.length || 0) > 0;
@@ -36,11 +38,11 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
             >
               {isExpanded ? (
                 <>
-                  Réduire <ChevronUp className="w-3 h-3" />
+                  {t('projects_card_read_less')} <ChevronUp className="w-3 h-3" />
                 </>
               ) : (
                 <>
-                  Lire la suite <ChevronDown className="w-3 h-3" />
+                  {t('projects_card_read_more')} <ChevronDown className="w-3 h-3" />
                 </>
               )}
             </button>
@@ -84,7 +86,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
               className="btn-secondary py-2 px-4 text-xs"
             >
               <Image className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
-              Images
+              {t('projects_card_images')}
             </button>
           )}
 
@@ -94,7 +96,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
               className="btn-secondary py-2 px-4 text-xs text-amber-900 dark:text-cyan-400 border-amber-300/60 dark:border-cyan-500/30 bg-amber-100/60 dark:bg-cyan-500/5 hover:bg-amber-200/60 dark:hover:bg-cyan-500/20"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-900 dark:text-cyan-400" />
-              Assistant IA
+              {t('projects_card_ai')}
             </button>
           )}
 
@@ -107,7 +109,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
               title="Code source GitHub"
             >
               <GithubIcon className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
-              Code
+              {t('projects_card_code')}
             </a>
           )}
         </div>

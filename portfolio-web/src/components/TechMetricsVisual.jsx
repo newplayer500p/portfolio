@@ -1,7 +1,9 @@
 import React from 'react';
 import { Terminal, Code2, Layers, Cpu, Database, Smartphone } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 export default function TechMetricsVisual({ profile }) {
+  const { t } = useLang();
   const tools       = profile?.skills?.tools       || [];
   const competences = profile?.skills?.competences || [];
 
@@ -9,7 +11,9 @@ export default function TechMetricsVisual({ profile }) {
     "Mobile & Web": <Smartphone className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />,
     "Backend": <Layers className="w-4 h-4 text-amber-600 dark:text-amber-400" />,
     "Données": <Database className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+    "Data": <Database className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
     "IA & Automatisation": <Cpu className="w-4 h-4 text-purple-600 dark:text-purple-400" />,
+    "AI & Automation": <Cpu className="w-4 h-4 text-purple-600 dark:text-purple-400" />,
   };
 
   return (
@@ -17,7 +21,7 @@ export default function TechMetricsVisual({ profile }) {
 
       {/* Section Header */}
       <div>
-        <h2 className="text-display-lg text-slate-900 dark:text-white">Mes compétences</h2>
+        <h2 className="text-display-lg text-slate-900 dark:text-white">{t('skills_section_title')}</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
@@ -27,7 +31,7 @@ export default function TechMetricsVisual({ profile }) {
           <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
             <Terminal className="w-4.5 h-4.5 text-[#7c5c44] dark:text-cyan-400" />
             <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
-              Outils & Technologies
+              {t('skills_tools_label')}
             </h3>
           </div>
 
@@ -64,7 +68,7 @@ export default function TechMetricsVisual({ profile }) {
           <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
             <Code2 className="w-4.5 h-4.5 text-[#7c5c44] dark:text-cyan-400" />
             <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
-              Compétences clés
+              {t('skills_key_label')}
             </h3>
           </div>
 

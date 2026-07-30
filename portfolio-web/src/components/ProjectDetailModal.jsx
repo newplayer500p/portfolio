@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Sparkles, ChevronLeft, ChevronRight, Play, Pause, Maximize2 } from 'lucide-react';
 import GithubIcon from './GithubIcon';
+import { useLang } from '../i18n/LanguageContext';
 
 export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
+  const { t } = useLang();
   if (!project) return null;
 
   const screenshots = project.media?.screenshots || [];
@@ -106,7 +108,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
             </h2>
             <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">{project.category} — {project.period}</p>
           </div>
-          <button onClick={onClose} className="btn-icon shrink-0">
+          <button onClick={onClose} className="btn-icon shrink-0" title={t('modal_close')}>
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -148,7 +150,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                           transformStyle: 'preserve-3d',
                           willChange: 'transform',
                         }}
-                        title={`Capture ${index + 1} / ${count} — Cliquer pour agrandir`}
+                        title={`Capture ${index + 1} / ${count}`}
                       >
                         {/* Responsive container preserving image aspect ratio */}
                         <div className="relative max-w-[200px] sm:max-w-[300px] max-h-[170px] sm:max-h-[250px] rounded-xl overflow-hidden border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-950/95 shadow-lg dark:shadow-2xl group-hover:border-cyan-400/80 group-hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center p-1 sm:p-1.5">
@@ -231,7 +233,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
               className="btn-primary py-2 px-4 text-xs"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              Assistant IA
+              {t('modal_ask_ai')}
             </button>
           )}
 
@@ -243,7 +245,7 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
               className="btn-secondary py-2 px-4 text-xs ml-auto"
             >
               <GithubIcon className="w-3.5 h-3.5 text-slate-400" />
-              Code
+              {t('projects_card_code')}
             </a>
           )}
         </div>

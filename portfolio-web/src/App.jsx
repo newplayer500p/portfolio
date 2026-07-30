@@ -11,6 +11,8 @@ import AIChatModal from './components/AIChatModal';
 import Footer from './components/Footer';
 import RevealOnScroll from './components/RevealOnScroll';
 import { Sparkles } from 'lucide-react';
+import { useLang } from './i18n/LanguageContext';
+import { getLocalizedProfile, getLocalizedProjects } from './i18n/dataTranslations';
 
 export default function App() {
   const [data, setData] = useState(null);
@@ -18,7 +20,7 @@ export default function App() {
   const [detailProject, setDetailProject] = useState(null);
   const [aiTargetProject, setAiTargetProject] = useState(null);
   const [isAIOpen, setIsAIOpen] = useState(false);
-
+  const { lang, t } = useLang();
 
   useEffect(() => {
     fetchPortfolioData().then((res) => setData(res));
@@ -68,7 +70,11 @@ export default function App() {
     );
   }
 
-  const { profile, projects } = data;
+  const rawProfile = data.profile;
+  const rawProjects = data.projects;
+
+  const profile = getLocalizedProfile(rawProfile, lang);
+  const projects = getLocalizedProjects(rawProjects, lang);
 
   const filteredProjects = projects.filter((p) => {
     if (activeTab === 'flagship') return p.tier === 'flagship';
@@ -105,13 +111,13 @@ export default function App() {
         {/* Section Title & Filter */}
         <RevealOnScroll delay={0}>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
-            <h2 className="text-display-lg text-slate-900 dark:text-white">Mes réalisations</h2>
+            <h2 className="text-display-lg text-slate-900 dark:text-white">{t('projects_section_title')}</h2>
 
             <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-[#f3ebe1] dark:bg-white/5 border border-[#e5dacd] dark:border-white/5 overflow-x-auto max-w-full self-start md:self-end">
               {[
-                { key: 'all', label: 'Tous' },
-                { key: 'flagship', label: 'Projets phares' },
-                { key: 'learning', label: 'Mini-projets' },
+                { key: 'all', label: t('projects_filter_all') },
+                { key: 'flagship', label: t('projects_filter_flagship') },
+                { key: 'learning', label: t('projects_filter_learning') },
               ].map((tab) => (
                 <button
                   key={tab.key}

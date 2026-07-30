@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { X, Sparkles, Send, Bot, User, RefreshCw, AlertCircle, ArrowRight } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 const WEBHOOK_URL = 'https://portfolio-n8n-310w.onrender.com/webhook/chat';
 const MAX_INPUT_LENGTH = 400;
@@ -177,24 +178,23 @@ function clearStoredSession() {
 
 // ─── Main Component ─────────────────────────────────────────────────────────
 export default function AIChatModal({ targetProject, profile, projects, onClose, onOpenProjectDetail }) {
+  const { t } = useLang();
   const isProjectSpecific = !!targetProject;
 
   const initialGreeting = isProjectSpecific
-    ? `Bonjour ! Posez-moi vos questions sur **${targetProject.title}** — architecture, stack technique ou défis rencontrés.`
-    : `Bonjour ! Je suis **Mirado AI** — l'assistant virtuel du portfolio. Posez vos questions sur les projets, compétences ou disponibilités.`;
+    ? `Bonjour ! Posez-moi vos questions sur **${targetProject.title}**.`
+    : `Bonjour ! Je suis **Mirado AI**. Posez vos questions sur mes projets, mes compétences ou mes disponibilités.`;
 
   const suggestedQuestions = isProjectSpecific
     ? [
-        'Résumé du projet',
-        'Architecture technique',
-        'Fonctionnalités clés',
-        'Défis techniques',
-        'Rôle de Mirado'
+        t('ai_project_ask'),
+        'Architecture',
+        'Stack',
       ]
     : [
-        `Compétences clés ?`,
-        `Projets phares ?`,
-        `Disponibilité freelance ?`
+        t('ai_about_skills'),
+        t('ai_about_projects'),
+        t('ai_about_contact')
       ];
 
   const [messages, setMessages] = useState(() => {
@@ -286,7 +286,6 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
 
       const data = await response.json();
 
-      // n8n webhooks may return an array [{output: "..."}] or an object {output: "..."}
       let rawOutput;
       if (Array.isArray(data)) {
         rawOutput = data[0]?.output;
@@ -295,7 +294,6 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
       }
       if (!rawOutput) rawOutput = 'Désolé, je n\'ai pas pu générer de réponse.';
 
-      // Parse [[SHOW_CARD:id]] tags
       const { cleanText, projectIds } = extractShowCards(rawOutput);
 
       const botMsg = {
@@ -358,7 +356,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
                 {isProjectSpecific ? targetProject.title : 'Mirado AI'}
               </h3>
               <p className="ai-header-subtitle">
-                {isProjectSpecific ? 'Questions techniques' : 'Assistant virtuel'}
+                {t('ai_subtitle')}
               </p>
             </div>
           </div>
@@ -431,7 +429,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
                   <span></span><span></span><span></span>
                 </div>
                 <span className="ai-typing-label">
-                  {coldStartHint ? 'Réveil du serveur IA...' : 'Mirado AI réfléchit...'}
+                  {t('ai_typing')}
                 </span>
               </div>
             </div>
@@ -452,7 +450,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
                 value={input}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                placeholder="Votre question..."
+                placeholder={t('ai_input_placeholder')}
                 maxLength={MAX_INPUT_LENGTH}
                 disabled={isTyping}
                 className="ai-input"

@@ -1,14 +1,16 @@
 import React from 'react';
 import { UserCheck, GraduationCap, Code2, Sparkles } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 export default function AboutSection({ profile }) {
+  const { t } = useLang();
   const about = profile?.about;
   if (!about) return null;
 
   const highlights = [
-    { icon: <GraduationCap className="w-4 h-4 text-emerald-500" />, text: "Licence 3 Génie Logiciel" },
-    { icon: <Code2 className="w-4 h-4 text-cyan-400" />, text: "ESP-Antsirabe" },
-    { icon: <Sparkles className="w-4 h-4 text-amber-500" />, text: "Full-Stack & IA" },
+    { icon: <GraduationCap className="w-4 h-4 text-emerald-500" />, text: t('about_highlight_degree') },
+    { icon: <Code2 className="w-4 h-4 text-cyan-400" />, text: t('about_highlight_school') },
+    { icon: <Sparkles className="w-4 h-4 text-amber-500" />, text: t('about_highlight_domain') },
   ];
 
   return (
@@ -17,7 +19,7 @@ export default function AboutSection({ profile }) {
       {/* Section Header */}
       <div>
         <h2 className="text-display-lg text-slate-900 dark:text-white">
-          {about.title || 'À propos de moi'}
+          {about.title || t('about_section_title')}
         </h2>
       </div>
 
@@ -27,7 +29,7 @@ export default function AboutSection({ profile }) {
         <div className="flex items-center gap-2.5 border-b border-slate-200 dark:border-white/5 pb-4">
           <UserCheck className="w-4.5 h-4.5 text-[#7c5c44] dark:text-cyan-400" />
           <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 font-display tracking-widest uppercase">
-            Parcours & Philosophie
+            {t('about_subsection_label')}
           </h3>
         </div>
 
