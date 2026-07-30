@@ -278,7 +278,7 @@
         "Flutter"
       ],
       "details": {
-        "summary": "Jeu de morpion classique en Flutter/Dart. Mini-projet d'apprentissage de la logique de jeu et de la gestion d'état des widgets Flutter."
+        "summary": "Jeu de morpion créer avec Flutter, jouable à deux ou contre IA. Mini-projet d'apprentissage de la logique de jeu et de la gestion d'état des widgets Flutter."
       },
       "links": {
         "github": "https://github.com/newplayer500p/morpion_game"
