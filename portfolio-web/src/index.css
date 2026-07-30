@@ -94,6 +94,44 @@ html.light .text-slate-500 {
   color: #948373;
 }
 
+/* Dark Theme Text Contrast Softening — même principe que le light mode.
+   Remplace le blanc pur (#fff / #f8fafc) par des tons slate-bleu doux
+   pour réduire la fatigue oculaire tout en gardant une lisibilité parfaite. */
+html:not(.light) .dark\:text-white,
+html.dark .dark\:text-white {
+  color: #cdd6e4;
+}
+
+html:not(.light) .dark\:text-slate-100,
+html.dark .dark\:text-slate-100 {
+  color: #c4ceda;
+}
+
+html:not(.light) .dark\:text-slate-200,
+html.dark .dark\:text-slate-200 {
+  color: #b8c3d1;
+}
+
+html:not(.light) .dark\:text-slate-300,
+html.dark .dark\:text-slate-300 {
+  color: #a8b5c5;
+}
+
+html:not(.light) .dark\:text-slate-400,
+html.dark .dark\:text-slate-400 {
+  color: #8a99ae;
+}
+
+html:not(.light) .dark\:text-slate-500,
+html.dark .dark\:text-slate-500 {
+  color: #6e7e92;
+}
+
+/* Variable globale de texte principal adoucie en dark mode */
+:root {
+  --text-primary: #c8d3e2;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
