@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Sparkles, Send, Bot, User, RefreshCw, AlertCircle, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { X, Sparkles, Send, Bot, User, ArrowRight } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
+import { ModalOverlay, ModalContent, springSmooth, springBouncy } from './Motion';
 
 const WEBHOOK_URL = 'https://portfolio-n8n-310w.onrender.com/webhook/chat';
 const MAX_INPUT_LENGTH = 400;
 const COLD_START_HINT_MS = 5000;
 
 // ─── Lightweight Markdown Parser ────────────────────────────────────────────
-// Handles ### headings, **bold**, *italic*, `code`, bullet lists, and line breaks.
-// Returns an array of React elements.
 function parseMarkdown(text) {
   if (!text) return null;
 
@@ -68,7 +68,6 @@ function parseMarkdown(text) {
 function formatInline(text) {
   if (!text) return text;
   const parts = [];
-  // Combined regex for **bold**, *italic*, `code`
   const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g;
   let lastIndex = 0;
   let match;
@@ -100,12 +99,10 @@ function extractShowCards(text) {
   let match;
   while ((match = TAG_REGEX.exec(text)) !== null) {
     const id = match[1].trim();
-    // Skip obvious placeholder ids
     if (id && id !== 'id_du_projet') {
       ids.push(id);
     }
   }
-  // Strip ALL tags from visible text (including invalid ones)
   const cleanText = text.replace(/\s*\[\[SHOW_CARD:[^\]]*\]\]\s*/g, '').trim();
   return { cleanText, projectIds: ids };
 }
@@ -117,13 +114,16 @@ function ProjectMiniCard({ project, onOpenDetail }) {
   const summary = project.details?.summary || '';
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={springBouncy}
       onClick={() => onOpenDetail(project)}
-      className="ai-project-card group"
+      className="ai-project-card group cursor-pointer"
     >
       <div className="ai-project-card-inner">
         <div className="ai-project-card-header">
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+          <Sparkles className="w-3.5 h-3.5 text-amber-600 dark:text-cyan-400 shrink-0" />
           <span className="ai-project-card-title">{project.title}</span>
           {project.category && (
             <span className="text-[10px] text-slate-400 dark:text-slate-500 font-normal truncate max-w-[130px] ml-1">
@@ -150,7 +150,7 @@ function ProjectMiniCard({ project, onOpenDetail }) {
           </div>
         )}
       </div>
-    </button>
+    </motion.button>
   );
 }
 
@@ -225,7 +225,6 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
       ? t('ai_greeting_project').replace('{title}', targetProject?.title || '')
       : t('ai_greeting_general');
     setMessages((prev) => {
-      // Only update the very first bot message (the greeting)
       if (prev.length === 0) return prev;
       const [first, ...rest] = prev;
       if (first.sender !== 'bot') return prev;
@@ -266,7 +265,6 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
     const text = (userText || input).trim();
     if (!text || isTyping) return;
 
-    // Add user message
     const userMsg = { id: Date.now(), sender: 'user', text, projectIds: [] };
     setMessages((prev) => [...prev, userMsg]);
     if (!userText) setInput('');
@@ -274,13 +272,11 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
     setError(null);
     setColdStartHint(false);
 
-    // Cold-start hint after 5s
     coldStartTimerRef.current = setTimeout(() => {
       setColdStartHint(true);
     }, COLD_START_HINT_MS);
 
     try {
-      // Build chatInput — prefix with project context if in project-specific mode
       let chatInput = text;
       if (isProjectSpecific && targetProject) {
         chatInput = `[Contexte: projet ${targetProject.title} (id: ${targetProject.id})] ${text}`;
@@ -357,8 +353,8 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
   const charRatio = charCount / MAX_INPUT_LENGTH;
 
   return (
-    <div className="ai-overlay" onClick={(e) => e.stopPropagation()}>
-      <div className="ai-modal">
+    <ModalOverlay className="ai-overlay" onClick={(e) => e.stopPropagation()}>
+      <ModalContent className="ai-modal">
 
         {/* ─── Header ─── */}
         <div className="ai-header">
@@ -375,30 +371,41 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
               </p>
             </div>
           </div>
-          <button onClick={handleResetSessionAndClose} className="ai-close-btn" aria-label="Fermer et réinitialiser">
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={handleResetSessionAndClose}
+            className="ai-close-btn cursor-pointer"
+            aria-label="Fermer et réinitialiser"
+          >
             <X className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
 
         {/* ─── Suggestion Pills ─── */}
         <div className="ai-suggestions">
           {suggestedQuestions.map((q, idx) => (
-            <button
+            <motion.button
               key={idx}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => handleSend(q)}
-              className="ai-suggestion-pill"
+              className="ai-suggestion-pill cursor-pointer"
               disabled={isTyping}
             >
               {q}
-            </button>
+            </motion.button>
           ))}
         </div>
 
         {/* ─── Messages ─── */}
         <div className="ai-messages">
           {messages.map((msg) => (
-            <div
+            <motion.div
               key={msg.id}
+              initial={{ opacity: 0, y: 15, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={springSmooth}
               className={`ai-msg-row ${msg.sender === 'user' ? 'ai-msg-row-user' : 'ai-msg-row-bot'}`}
             >
               {/* Avatar */}
@@ -430,12 +437,16 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
 
           {/* Typing indicator */}
           {isTyping && (
-            <div className="ai-msg-row ai-msg-row-bot">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="ai-msg-row ai-msg-row-bot"
+            >
               <div className="ai-avatar ai-avatar-bot">
                 <Bot className="w-3.5 h-3.5" />
               </div>
@@ -447,7 +458,7 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
                   {coldStartHint ? t('ai_cold_start') : t('ai_typing')}
                 </span>
               </div>
-            </div>
+            </motion.div>
           )}
 
           <div ref={messagesEndRef} />
@@ -475,17 +486,21 @@ export default function AIChatModal({ targetProject, profile, projects, onClose,
                 {charCount}/{MAX_INPUT_LENGTH}
               </span>
             </div>
-            <button
+            <motion.button
               type="submit"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              transition={springBouncy}
               disabled={!input.trim() || isTyping}
-              className="ai-send-btn"
+              className="ai-send-btn cursor-pointer"
             >
               <Send className="w-4 h-4" />
-            </button>
+            </motion.button>
           </form>
         </div>
 
-      </div>
-    </div>
+      </ModalContent>
+    </ModalOverlay>
   );
 }
+

@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Terminal, Code2, Layers, Cpu, Database, Smartphone } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
+import { StaggerContainer, StaggerItem, springBouncy } from './Motion';
 
 export default function TechMetricsVisual({ profile }) {
   const { t } = useLang();
@@ -8,7 +10,7 @@ export default function TechMetricsVisual({ profile }) {
   const competences = profile?.skills?.competences || [];
 
   const categoryIcons = {
-    "Mobile & Web": <Smartphone className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />,
+    "Mobile & Web": <Smartphone className="w-4 h-4 text-amber-600 dark:text-cyan-400" />,
     "Backend": <Layers className="w-4 h-4 text-amber-600 dark:text-amber-400" />,
     "Données": <Database className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
     "Data": <Database className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
@@ -35,11 +37,11 @@ export default function TechMetricsVisual({ profile }) {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1" staggerDelay={0.08}>
             {tools.map((group, idx) => (
-              <div
+              <StaggerItem
                 key={idx}
-                className="p-4 sm:p-5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 space-y-3 flex flex-col justify-between hover:border-cyan-500/30 dark:hover:border-cyan-500/30 transition-all shadow-sm"
+                className="p-4 sm:p-5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#ede4da] dark:border-white/5 space-y-3 flex flex-col justify-between hover:border-amber-300/50 dark:hover:border-cyan-500/30 transition-all shadow-xs"
               >
                 <div className="flex items-center justify-between">
                   <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-display">
@@ -50,17 +52,19 @@ export default function TechMetricsVisual({ profile }) {
 
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {group.items.map((tool) => (
-                    <span
+                    <motion.span
                       key={tool}
-                      className="px-2.5 py-1 rounded-xl bg-[#f4ede5] dark:bg-white/[0.06] text-slate-800 dark:text-slate-200 text-xs font-semibold border border-[#ddd0c4] dark:border-white/10 hover:border-cyan-500/40 dark:hover:border-cyan-400/40 hover:bg-cyan-500/5 transition-all shadow-2xs"
+                      whileHover={{ scale: 1.08, y: -1 }}
+                      transition={springBouncy}
+                      className="px-2.5 py-1 rounded-xl bg-white/80 dark:bg-white/[0.06] text-[#4d3d2e] dark:text-slate-200 text-xs font-medium border border-[#e8dfd5] dark:border-white/10 hover:border-amber-300/60 dark:hover:border-cyan-400/40 hover:bg-[#f5efe6] dark:hover:bg-cyan-500/10 transition-colors shadow-2xs cursor-default"
                     >
                       {tool}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
 
         {/* Right Panel — Compétences clés */}
@@ -72,11 +76,11 @@ export default function TechMetricsVisual({ profile }) {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1" staggerDelay={0.08}>
             {competences.map((comp, idx) => (
-              <div
+              <StaggerItem
                 key={idx}
-                className="p-4 sm:p-5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 space-y-2.5 flex flex-col justify-start items-start hover:border-cyan-500/30 dark:hover:border-cyan-500/30 transition-all shadow-sm"
+                className="p-4 sm:p-5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#ede4da] dark:border-white/5 space-y-2.5 flex flex-col justify-start items-start hover:border-amber-300/50 dark:hover:border-cyan-500/30 transition-all shadow-xs"
               >
                 <h4 className="font-display font-bold text-slate-900 dark:text-white text-sm sm:text-base leading-snug">
                   {comp.title}
@@ -84,9 +88,9 @@ export default function TechMetricsVisual({ profile }) {
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {comp.detail}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
 
       </div>
@@ -94,3 +98,4 @@ export default function TechMetricsVisual({ profile }) {
     </section>
   );
 }
+

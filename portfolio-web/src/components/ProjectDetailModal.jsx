@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sparkles, ChevronLeft, ChevronRight, Play, Pause, Maximize2 } from 'lucide-react';
 import GithubIcon from './GithubIcon';
 import { useLang } from '../i18n/LanguageContext';
+import { ModalOverlay, ModalContent, springBouncy } from './Motion';
 
 export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
   const { t } = useLang();
@@ -91,11 +93,11 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-2 sm:p-4 bg-slate-950/60 dark:bg-black/85 backdrop-blur-md"
+    <ModalOverlay
+      className="fixed inset-0 z-[60] flex items-center justify-center p-2 sm:p-4 bg-slate-950/60 dark:bg-black/85"
       onClick={onClose}
     >
-      <div
+      <ModalContent
         className="relative w-full max-w-4xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[96vh] sm:max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
@@ -108,9 +110,15 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
             </h2>
             <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">{project.category} — {project.period}</p>
           </div>
-          <button onClick={onClose} className="btn-icon shrink-0" title={t('modal_close')}>
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={onClose}
+            className="btn-icon shrink-0 cursor-pointer"
+            title={t('modal_close')}
+          >
             <X className="w-5 h-5" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Modal Body / 3D Orbit Display */}
@@ -153,15 +161,15 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                         title={`Capture ${index + 1} / ${count}`}
                       >
                         {/* Responsive container preserving image aspect ratio */}
-                        <div className="relative max-w-[200px] sm:max-w-[300px] max-h-[170px] sm:max-h-[250px] rounded-xl overflow-hidden border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-950/95 shadow-lg dark:shadow-2xl group-hover:border-cyan-400/80 group-hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center p-1 sm:p-1.5">
+                        <div className="relative max-w-[200px] sm:max-w-[300px] max-h-[170px] sm:max-h-[250px] rounded-xl overflow-hidden border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-950/95 shadow-lg dark:shadow-2xl group-hover:border-amber-400/70 dark:group-hover:border-cyan-400/80 group-hover:shadow-amber-500/15 dark:group-hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center p-1 sm:p-1.5">
                           <img
                             src={imgUrl}
                             alt={`${project.title} — capture ${index + 1}`}
                             className="max-w-full max-h-[150px] sm:max-h-[230px] w-auto h-auto object-contain rounded-lg"
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
-                            <Maximize2 className="w-5 h-5 sm:w-7 sm:h-7 text-cyan-600 dark:text-white drop-shadow-md" />
+                          <div className="absolute inset-0 bg-amber-500/10 dark:bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
+                            <Maximize2 className="w-5 h-5 sm:w-7 sm:h-7 text-amber-700 dark:text-white drop-shadow-md" />
                           </div>
                         </div>
                       </div>
@@ -203,15 +211,16 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
                     onChange={(e) => setRotationSpeed(parseFloat(e.target.value))}
                     className="w-24 accent-cyan-500 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
                   />
-                  <button
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => setIsAutoRotating(!isAutoRotating)}
-                    className={`btn-secondary py-1 px-3 text-[11px] flex items-center gap-1.5 ${
-                      isAutoRotating ? 'text-cyan-600 dark:text-cyan-400 border-cyan-500/30' : 'text-slate-600 dark:text-slate-400'
+                    className={`btn-secondary py-1 px-3 text-[11px] flex items-center gap-1.5 cursor-pointer ${
+                      isAutoRotating ? 'text-amber-700 dark:text-cyan-400 border-amber-400/30 dark:border-cyan-500/30' : 'text-slate-600 dark:text-slate-400'
                     }`}
                   >
                     {isAutoRotating ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
                     {isAutoRotating ? 'Pause' : 'Auto'}
-                  </button>
+                  </motion.button>
                 </div>
 
               </div>
@@ -228,17 +237,23 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
         {/* Modal Footer */}
         <div className="px-6 py-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between gap-3 bg-slate-100/90 dark:bg-slate-950/80">
           {isFeatured && (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={springBouncy}
               onClick={() => { onClose(); onOpenAI(project); }}
-              className="btn-primary py-2 px-4 text-xs"
+              className="btn-primary py-2 px-4 text-xs cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5" />
               {t('modal_ask_ai')}
-            </button>
+            </motion.button>
           )}
 
           {!!(project.links?.github && project.links.github.trim()) && (
-            <a
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={springBouncy}
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -246,64 +261,81 @@ export default function ProjectDetailModal({ project, onClose, onOpenAI }) {
             >
               <GithubIcon className="w-3.5 h-3.5 text-slate-400" />
               {t('projects_card_code')}
-            </a>
+            </motion.a>
           )}
         </div>
 
-      </div>
+      </ModalContent>
 
       {/* Lightbox / Zoom Modal with Scrollable Previous & Next Navigation */}
-      {lightboxIndex !== null && (
-        <div
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
-          onClick={() => setLightboxIndex(null)}
-        >
-          {/* Close button */}
-          <button
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
             onClick={() => setLightboxIndex(null)}
-            className="absolute top-6 right-6 btn-icon bg-slate-900/90 text-white hover:bg-slate-800 z-10"
-            title="Fermer (Échap)"
           >
-            <X className="w-6 h-6" />
-          </button>
+            {/* Close button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setLightboxIndex(null)}
+              className="absolute top-6 right-6 btn-icon bg-slate-900/90 text-white hover:bg-slate-800 z-10 cursor-pointer"
+              title="Fermer (Échap)"
+            >
+              <X className="w-6 h-6" />
+            </motion.button>
 
-          {/* Left Arrow Button (<) */}
-          <button
-            onClick={handlePrevImage}
-            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/80 hover:bg-cyan-500 hover:text-slate-950 text-white border border-white/10 flex items-center justify-center shadow-2xl transition-all cursor-pointer z-10"
-            title="Image précédente (Flèche Gauche)"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+            {/* Left Arrow Button (<) */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handlePrevImage}
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/80 hover:bg-amber-500 dark:hover:bg-cyan-500 hover:text-slate-950 text-white border border-white/10 flex items-center justify-center shadow-2xl transition-colors cursor-pointer z-10"
+              title="Image précédente (Flèche Gauche)"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
 
-          {/* Main Zoomed Image Container */}
-          <div
-            className="relative max-w-5xl max-h-[85vh] w-full flex items-center justify-center p-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={screenshots[lightboxIndex]}
-              alt={`${project.title} — zoom ${lightboxIndex + 1}`}
-              className="max-h-[82vh] max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10"
-            />
-          </div>
+            {/* Main Zoomed Image Container */}
+            <div
+              className="relative max-w-5xl max-h-[85vh] w-full flex items-center justify-center p-2"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <motion.img
+                key={lightboxIndex}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                src={screenshots[lightboxIndex]}
+                alt={`${project.title} — zoom ${lightboxIndex + 1}`}
+                className="max-h-[82vh] max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10"
+              />
+            </div>
 
-          {/* Right Arrow Button (>) */}
-          <button
-            onClick={handleNextImage}
-            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/80 hover:bg-cyan-500 hover:text-slate-950 text-white border border-white/10 flex items-center justify-center shadow-2xl transition-all cursor-pointer z-10"
-            title="Image suivante (Flèche Droite)"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+            {/* Right Arrow Button (>) */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleNextImage}
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/80 hover:bg-amber-500 dark:hover:bg-cyan-500 hover:text-slate-950 text-white border border-white/10 flex items-center justify-center shadow-2xl transition-colors cursor-pointer z-10"
+              title="Image suivante (Flèche Droite)"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
 
-          {/* Counter Badge Bottom */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-white/10 text-xs font-mono text-cyan-400 font-semibold shadow-xl">
-            {lightboxIndex + 1} / {count}
-          </div>
-        </div>
-      )}
+            {/* Counter Badge Bottom */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-white/10 text-xs font-mono text-amber-400 dark:text-cyan-400 font-semibold shadow-xl">
+              {lightboxIndex + 1} / {count}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-    </div>
+    </ModalOverlay>
   );
 }
+

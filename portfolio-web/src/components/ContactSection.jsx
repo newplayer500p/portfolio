@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Mail, Phone, Send, Download, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import GithubIcon from './GithubIcon';
 import { useLang } from '../i18n/LanguageContext';
+import { StaggerContainer, StaggerItem, springBouncy } from './Motion';
 
 const LinkedinIcon = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +22,6 @@ export default function ContactSection({ profile, onDownloadCV }) {
     
     setStatus('sending');
     
-    // Open mailto link pre-filled with user's input
     const mailtoSubject = encodeURIComponent(formData.subject || `Message de ${formData.name}`);
     const mailtoBody = encodeURIComponent(`De: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
     
@@ -50,82 +51,97 @@ export default function ContactSection({ profile, onDownloadCV }) {
               {t('contact_coordinates_label')}
             </h3>
 
-            <div className="space-y-3">
-              <div className="space-y-1">
+            <StaggerContainer className="space-y-3" staggerDelay={0.06}>
+              <StaggerItem className="space-y-1">
                 <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider pl-1">{t('contact_email_label')}</p>
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02, x: 2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={springBouncy}
                   href={`mailto:${profile.contact?.email}`}
-                  className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-cyan-500/30 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
+                  className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-amber-300/50 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-colors group"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <Mail className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                     <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 truncate">{profile.contact?.email}</span>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
-                </a>
-              </div>
+                </motion.a>
+              </StaggerItem>
 
-              <div className="space-y-1">
+              <StaggerItem className="space-y-1">
                 <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider pl-1">{t('contact_phone_label')}</p>
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02, x: 2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={springBouncy}
                   href={`tel:${profile.contact?.phone?.replace(/\s+/g, '')}`}
-                  className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-cyan-500/30 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
+                  className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-amber-300/50 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                     <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">{profile.contact?.phone}</span>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
-                </a>
-              </div>
+                </motion.a>
+              </StaggerItem>
 
               {profile.contact?.github && (
-                <div className="space-y-1">
+                <StaggerItem className="space-y-1">
                   <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider pl-1">{t('contact_github_label')}</p>
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.02, x: 2 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={springBouncy}
                     href={profile.contact.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-cyan-500/30 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
+                    className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-amber-300/50 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-colors group"
                   >
                     <div className="flex items-center gap-3">
                       <GithubIcon className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                       <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">github.com/newplayer500p</span>
                     </div>
                     <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
-                  </a>
-                </div>
+                  </motion.a>
+                </StaggerItem>
               )}
 
               {profile.contact?.linkedin && (
-                <div className="space-y-1">
+                <StaggerItem className="space-y-1">
                   <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider pl-1">{t('contact_linkedin_label')}</p>
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.02, x: 2 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={springBouncy}
                     href={profile.contact.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-cyan-500/30 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-all group"
+                    className="flex items-center justify-between p-3.5 rounded-2xl bg-[#faf6f0] dark:bg-white/[0.03] border border-[#eee7de] dark:border-white/5 hover:border-amber-300/50 dark:hover:border-cyan-500/30 hover:bg-[#f7f1e9] dark:hover:bg-white/[0.06] transition-colors group"
                   >
                     <div className="flex items-center gap-3">
                       <LinkedinIcon className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400 shrink-0" />
                       <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">Haja Mirado Rasolofoson</span>
                     </div>
                     <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors shrink-0" />
-                  </a>
-                </div>
+                  </motion.a>
+                </StaggerItem>
               )}
-            </div>
+            </StaggerContainer>
           </div>
 
           {/* Action CV */}
           <div className="pt-2">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={springBouncy}
               onClick={onDownloadCV}
-              className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl border border-[#e8dfd5] dark:border-white/10 bg-[#faf6f0] dark:bg-white/[0.05] text-[#261e17] dark:text-slate-200 hover:bg-[#f5efe6] dark:hover:bg-white/10 text-xs font-semibold transition-all shadow-sm"
+              className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl border border-[#e8dfd5] dark:border-white/10 bg-[#faf6f0] dark:bg-white/[0.05] text-[#261e17] dark:text-slate-200 hover:bg-[#f5efe6] dark:hover:bg-white/10 text-xs font-semibold transition-colors shadow-sm cursor-pointer"
             >
               <Download className="w-4 h-4 text-[#7c5c44] dark:text-cyan-400" />
               <span>{t('contact_cv_btn')}</span>
-            </button>
+            </motion.button>
           </div>
         </div>
 
@@ -187,10 +203,13 @@ export default function ContactSection({ profile, onDownloadCV }) {
             </div>
 
             <div className="pt-2">
-              <button
+              <motion.button
                 type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={springBouncy}
                 disabled={status === 'sending'}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base bg-[#7c5c44] hover:bg-[#5e4433] text-white dark:bg-cyan-400 dark:hover:bg-cyan-300 dark:text-slate-950 shadow-md transition-all cursor-pointer group"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base bg-amber-600 hover:bg-amber-500 text-white dark:bg-cyan-400 dark:hover:bg-cyan-300 dark:text-slate-950 shadow-md transition-all cursor-pointer group"
               >
                 {status === 'sending' ? (
                   <span>{t('contact_form_sending')}</span>
@@ -203,7 +222,7 @@ export default function ContactSection({ profile, onDownloadCV }) {
                     <Send className="w-4.5 h-4.5 group-hover:translate-x-0.5 transition-transform" /> {t('contact_form_submit')}
                   </span>
                 )}
-              </button>
+              </motion.button>
             </div>
           </form>
         </div>
@@ -213,3 +232,4 @@ export default function ContactSection({ profile, onDownloadCV }) {
     </section>
   );
 }
+

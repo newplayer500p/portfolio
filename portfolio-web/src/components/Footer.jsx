@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import GithubIcon from './GithubIcon';
 import { useLang } from '../i18n/LanguageContext';
+import { springBouncy } from './Motion';
 
 const LinkedinIcon = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +26,10 @@ export default function Footer({ profile }) {
         {/* Center — Social Icons */}
         <div className="flex items-center gap-3">
           {profile?.contact?.github && (
-            <a
+            <motion.a
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              transition={springBouncy}
               href={profile.contact.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -32,10 +37,13 @@ export default function Footer({ profile }) {
               title="GitHub"
             >
               <GithubIcon className="w-4 h-4" />
-            </a>
+            </motion.a>
           )}
           {profile?.contact?.linkedin && (
-            <a
+            <motion.a
+              whileHover={{ scale: 1.15, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
+              transition={springBouncy}
               href={profile.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
@@ -43,7 +51,7 @@ export default function Footer({ profile }) {
               title="LinkedIn"
             >
               <LinkedinIcon className="w-4 h-4" />
-            </a>
+            </motion.a>
           )}
         </div>
 
@@ -59,3 +67,4 @@ export default function Footer({ profile }) {
     </footer>
   );
 }
+

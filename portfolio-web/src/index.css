@@ -33,6 +33,8 @@
   --btn-secondary-text: #f8fafc;
   --btn-secondary-border: rgba(255, 255, 255, 0.1);
   --btn-secondary-hover-bg: rgba(255, 255, 255, 0.12);
+
+  --shadow-card: 0 12px 32px -4px rgba(0, 0, 0, 0.45), 0 0 20px -4px rgba(6, 182, 212, 0.04);
   
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,7 +48,9 @@ html.light {
   --bg-nav: rgba(253, 248, 244, 0.92);
   
   --border-subtle: rgba(180, 140, 100, 0.12);
-  --border-glow: rgba(8, 145, 178, 0.3);
+  --border-glow: rgba(217, 119, 6, 0.25);
+
+  --shadow-card: 0 12px 32px -4px rgba(124, 92, 68, 0.08), 0 4px 12px -2px rgba(180, 140, 100, 0.05);
   
   --text-primary: #261e17;
   --text-secondary: #524436;
@@ -56,12 +60,12 @@ html.light {
   --input-border: #e8dfd5;
 
   /* Light Mode Buttons — Unified Warm Espresso Styling */
-  --btn-primary-bg: #7c5c44;
-  --btn-primary-text: #fdf8f4;
-  --btn-primary-hover: #5e4433;
+  --btn-primary-bg: #d97706;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #b45309;
   
   --btn-secondary-bg: rgba(180, 140, 100, 0.08);
-  --btn-secondary-text: #261e17;
+  --btn-secondary-text: #3d2a1d;
   --btn-secondary-border: rgba(180, 140, 100, 0.18);
   --btn-secondary-hover-bg: rgba(180, 140, 100, 0.15);
 }
@@ -204,7 +208,8 @@ html, body {
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   isolation: isolate;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  box-shadow: var(--shadow-card);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-nav {
@@ -217,6 +222,11 @@ html, body {
 
 .glow-border:hover {
   border-color: var(--border-glow);
+  box-shadow: 0 0 25px rgba(217, 119, 6, 0.12);
+}
+
+html.dark .glow-border:hover,
+html:not(.light) .glow-border:hover {
   box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
 }
 
@@ -402,18 +412,7 @@ html.dark .btn-primary:hover {
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  animation: aiFadeIn 0.2s ease-out;
   pointer-events: auto;
-}
-
-@keyframes aiFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes aiSlideUp {
-  from { opacity: 0; transform: translateY(24px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* Modal Container */
@@ -433,7 +432,6 @@ html.dark .btn-primary:hover {
   box-shadow:
     0 24px 80px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(6, 182, 212, 0.12);
-  animation: aiSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Header */
@@ -908,50 +906,50 @@ html.light .ai-modal {
 }
 
 html.light .ai-header-icon {
-  background: rgba(180, 140, 100, 0.12);
-  border-color: rgba(180, 140, 100, 0.25);
-  color: #7c5c44;
+  background: rgba(217, 119, 6, 0.12);
+  border-color: rgba(217, 119, 6, 0.25);
+  color: #d97706;
 }
 
 html.light .ai-suggestion-pill {
-  background: rgba(180, 140, 100, 0.08);
-  border-color: rgba(180, 140, 100, 0.2);
-  color: #7c5c44;
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.2);
+  color: #b45309;
 }
 
 html.light .ai-suggestion-pill:hover:not(:disabled) {
-  background: rgba(180, 140, 100, 0.18);
-  border-color: rgba(180, 140, 100, 0.4);
+  background: rgba(217, 119, 6, 0.18);
+  border-color: rgba(217, 119, 6, 0.4);
 }
 
 html.light .ai-avatar-user,
 html.light .ai-bubble-user {
-  background: #7c5c44;
-  color: #fdf8f4;
+  background: #d97706;
+  color: #ffffff;
 }
 
 html.light .ai-avatar-bot {
-  background: rgba(180, 140, 100, 0.1);
-  border-color: rgba(180, 140, 100, 0.25);
-  color: #7c5c44;
+  background: rgba(217, 119, 6, 0.1);
+  border-color: rgba(217, 119, 6, 0.25);
+  color: #d97706;
 }
 
 html.light .ai-md-bold {
-  color: #7c5c44;
+  color: #b45309;
 }
 
 html.light .ai-md-list li::before {
-  color: #7c5c44;
+  color: #d97706;
 }
 
 html.light .ai-send-btn {
-  background: #7c5c44;
-  color: #fdf8f4;
+  background: #d97706;
+  color: #ffffff;
 }
 
 html.light .ai-send-btn:hover:not(:disabled) {
-  background: #5e4433;
-  box-shadow: 0 4px 16px rgba(124, 92, 68, 0.3);
+  background: #b45309;
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3);
 }
 
 /* ─── Responsive ─── */

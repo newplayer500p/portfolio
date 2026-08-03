@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Image, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sparkles, ChevronDown, ChevronUp, Box } from 'lucide-react';
 import GithubIcon from './GithubIcon';
 import { useLang } from '../i18n/LanguageContext';
+import { springSmooth, springBouncy } from './Motion';
 
 export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -18,7 +20,11 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
   const hasActions = hasImages || isFeatured || hasGithub;
 
   return (
-    <div className="glass-panel p-6 glow-border flex flex-col justify-between gap-5 transition-all duration-300">
+    <motion.div
+      whileHover={{ y: -5 }}
+      transition={springSmooth}
+      className="glass-panel p-6 glow-border flex flex-col justify-between gap-5 transition-all duration-300 h-full"
+    >
 
       <div className="space-y-4">
         {/* Title */}
@@ -26,13 +32,17 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
           {project.title}
         </h3>
 
-        {/* Short description with inline expand / collapse toggle */}
+        {/* Short description with inline expand / collapse toggle & smooth layout animation */}
         <div>
-          <p className={`text-sm text-slate-600 dark:text-slate-400 leading-relaxed ${isExpanded ? '' : 'line-clamp-3'}`}>
+          <motion.p
+            layout
+            className={`text-sm text-slate-600 dark:text-slate-400 leading-relaxed ${isExpanded ? '' : 'line-clamp-3'}`}
+          >
             {summary}
-          </p>
+          </motion.p>
           {isLongSummary && (
-            <button
+            <motion.button
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsExpanded(!isExpanded)}
               className="inline-flex items-center gap-1 text-xs text-amber-900 dark:text-cyan-400 font-medium hover:underline mt-1.5 cursor-pointer bg-transparent border-none p-0"
             >
@@ -45,7 +55,7 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
                   {t('projects_card_read_more')} <ChevronDown className="w-3 h-3" />
                 </>
               )}
-            </button>
+            </motion.button>
           )}
         </div>
 
@@ -64,57 +74,71 @@ export default function ProjectCard({ project, onOpenDetails, onOpenAI }) {
           </div>
         )}
 
-        {/* Technologies — Soft rounded pills */}
+        {/* Technologies — Soft rounded pills with hover micro-animations */}
         <div className="flex flex-wrap gap-2 pt-1">
           {project.stack?.map((tech) => (
-            <span
+            <motion.span
               key={tech}
-              className="px-3 py-1 rounded-full bg-[#fffdfa] dark:bg-slate-800/60 text-[#261e17] dark:text-slate-300 text-xs font-medium border border-[#e8dfd5] dark:border-slate-700/30 transition-colors shadow-2xs"
+              whileHover={{ scale: 1.08, y: -1 }}
+              transition={springBouncy}
+              className="px-3 py-1 rounded-full bg-white/80 dark:bg-slate-800/60 text-[#4d3d2e] dark:text-slate-300 text-xs font-medium border border-[#e8dfd5] dark:border-slate-700/40 shadow-2xs cursor-default"
             >
               {tech}
-            </span>
+            </motion.span>
           ))}
         </div>
       </div>
 
       {/* Actions — bottom */}
       {hasActions && (
-        <div className="pt-4 border-t border-slate-200/80 dark:border-white/5 flex flex-wrap items-center gap-3 mt-auto">
+        <div className="pt-4 border-t border-slate-200/80 dark:border-white/5 grid grid-cols-2 gap-2.5 mt-auto">
           {hasImages && (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              transition={springBouncy}
               onClick={() => onOpenDetails(project)}
-              className="btn-secondary py-2 px-4 text-xs"
+              className="btn-secondary py-2.5 px-3 text-xs justify-center text-center w-full min-w-0 cursor-pointer"
             >
-              <Image className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
-              {t('projects_card_images')}
-            </button>
+              <Box className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" />
+              <span className="truncate">{t('projects_card_images')} (3D)</span>
+            </motion.button>
           )}
 
           {isFeatured && (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              transition={springBouncy}
               onClick={() => onOpenAI(project)}
-              className="btn-secondary py-2 px-4 text-xs text-amber-900 dark:text-cyan-400 border-amber-300/60 dark:border-cyan-500/30 bg-amber-100/60 dark:bg-cyan-500/5 hover:bg-amber-200/60 dark:hover:bg-cyan-500/20"
+              className="btn-secondary py-2.5 px-3 text-xs justify-center text-center w-full min-w-0 cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-900 dark:text-cyan-400" />
-              {t('projects_card_ai')}
-            </button>
+              <Sparkles className="w-3.5 h-3.5 text-amber-700 dark:text-cyan-400 shrink-0" />
+              <span className="truncate">{t('projects_card_ai')}</span>
+            </motion.button>
           )}
 
           {hasGithub && (
-            <a
+            <motion.a
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              transition={springBouncy}
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary py-2 px-4 text-xs text-slate-700 dark:text-slate-300"
+              className={`btn-secondary py-2.5 px-3 text-xs justify-center text-center min-w-0 ${
+                hasImages && isFeatured ? 'col-span-2 w-full' : 'w-full'
+              }`}
               title="Code source GitHub"
             >
-              <GithubIcon className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
-              {t('projects_card_code')}
-            </a>
+              <GithubIcon className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" />
+              <span className="truncate">{t('projects_card_code')}</span>
+            </motion.a>
           )}
         </div>
       )}
 
-    </div>
+    </motion.div>
   );
 }
+
