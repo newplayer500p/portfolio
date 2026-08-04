@@ -9,8 +9,9 @@
     "about": {
       "title": "À propos de moi",
       "paragraphs": [
-        "Étudiant en 3e année de Génie Logiciel à l'ESP-Antsirabe, je conçois des applications web et mobiles performantes en accordant autant d'importance à la robustesse du backend qu'à la qualité des interfaces.",
-        "Ma démarche repose sur une phase de conception (UML, schéma relationnel) pour garantir des architectures évolutives. Cette structure permet de livrer des APIs REST claires, une gestion de données maîtrisée et des applications fluides."
+        "Étudiant en 3e année de Génie Logiciel à l'ESP-Antsirabe, je développe des applications web et mobiles full-stack. Mon travail s'articule principalement autour de la logique serveur (APIs REST avec NestJS et FastAPI, bases PostgreSQL et Redis) et de la création d'interfaces côté client avec Flutter, React.",
+        "En plus du développement classique, j'intègre des fonctionnalités plus avancées dans mes projets : le traitement de données géospatiales avec PostGIS, l'optimisation de requêtes en temps réel, ou l'utilisation de modèles IA (transcription WhisperX, pipelines LLM).",
+        " Je suis habitué à mener des projets en autonomie ou à collaborer en équipe."
       ]
     },
     "skills": {
