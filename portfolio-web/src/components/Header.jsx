@@ -24,6 +24,25 @@ export default function Header({ profile, onOpenGeneralAI }) {
     { href: '#contact', label: t('nav_contact') },
   ];
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    if (href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -35,7 +54,11 @@ export default function Header({ profile, onOpenGeneralAI }) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
         {/* Left — Dynamic Name */}
-        <a href="#" className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg tracking-tight hover:opacity-80 transition-opacity shrink-0">
+        <a
+          href="#"
+          onClick={(e) => handleNavClick(e, '#')}
+          className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg tracking-tight hover:opacity-80 transition-opacity shrink-0"
+        >
           <span className="hidden sm:inline">{profile?.name || 'RASOLOFOSON Haja Mirado'}</span>
           <span className="inline sm:hidden">Haja Mirado</span>
         </a>
@@ -46,7 +69,8 @@ export default function Header({ profile, onOpenGeneralAI }) {
             <a
               key={link.href}
               href={link.href}
-              className="hover:text-slate-900 dark:hover:text-white transition-colors hidden sm:block"
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="hover:text-slate-900 dark:hover:text-white transition-colors hidden sm:block cursor-pointer"
             >
               {link.label}
             </a>
@@ -96,8 +120,8 @@ export default function Header({ profile, onOpenGeneralAI }) {
                 initial={{ opacity: 0, x: -15 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.05 + 0.1 }}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-amber-100/60 dark:hover:bg-white/10 transition-all"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="block px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-amber-100/60 dark:hover:bg-white/10 transition-all cursor-pointer"
               >
                 {link.label}
               </motion.a>
