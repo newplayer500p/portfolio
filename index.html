@@ -1,32 +1,36 @@
 <!doctype html>
-<html lang="fr" class="dark">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RASOLOFOSON Haja Mirado — Portfolio Full-Stack & IA (ESPA L3)</title>
     <meta name="description" content="Portfolio 3D interactif de RASOLOFOSON Haja Mirado, Développeur Full-Stack (NestJS, Flutter, React, PostGIS, LLM) étudiant en Génie Logiciel à l'ESPA Antsirabe." />
-    <!-- Google Fonts -->
+    
+    <!-- Instant Anti-FOUC Theme Initialization (Zero Flash / Zero Saccade) -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme = saved || 'dark';
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Google Fonts: Inter, JetBrains Mono, Outfit, Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Tailwind CSS Engine -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              slate: {
-                950: '#07080c',
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <script type="module" crossorigin src="/portfolio/assets/index-DlyDka1T.js"></script>
-    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-CJrIagVZ.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="module" crossorigin src="/portfolio/assets/index-BZTSBNXi.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-CT16jA95.css">
   </head>
   <body>
     <div id="root"></div>
