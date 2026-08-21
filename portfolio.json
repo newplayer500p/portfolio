@@ -9,9 +9,9 @@
     "about": {
       "title": "À propos de moi",
       "paragraphs": [
-        "Étudiant en 3e année de Génie Logiciel à l’ESP-Antsirabe, je développe principalement des applications mobiles ainsi que des applications web full-stack. Je conçois ainsi des applications complètes, de l’interface utilisateur aux APIs et services serveur, avec des bases de données PostgreSQL et Redis.",
-        "J’intègre également des technologies avancées telles que **PostGIS pour les données géospatiales**, les traitements en temps réel et des fonctionnalités d’IA intégrant les LLM et des architectures RAG. Autonome et à l’aise en équipe, je m’intéresse particulièrement à la conception de solutions complètes, robustes et évolutives."
-
+        "Étudiant en 3e année de Génie Logiciel à l'ESP-Antsirabe, je suis spécialisé dans le développement mobile avec une solide expertise web full-stack (React, NestJS, FastAPI). Je conçois des applications fluides et performantes, adossées à des architectures serveur robustes et scalables (PostgreSQL, Redis).",
+        "Au-delà du développement classique, j'intègre des fonctionnalités techniques à forte valeur ajoutée : exploitation de données géospatiales avancées (PostGIS), fonctionnalités temps réel et intégration de modèles d'IA (pipelines LLM, transcription locale WhisperX).",
+        "Rigoureux sur la conception (UML, Clean Architecture), je suis capable de mener un projet mobile/web de bout en bout en autonomie comme de collaborer efficacement au sein d'une équipe technique."
       ]
     },
     "skills": {
@@ -233,6 +233,6 @@
         "demo_video": null,
         "screenshots": []
       }
-    },
+    }
   ]
 }
